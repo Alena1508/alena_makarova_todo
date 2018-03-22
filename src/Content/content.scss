@@ -1,0 +1,13 @@
+@import "../variables";
+.content {
+  background: royalblue;
+  width: 70%;
+  font: $base-font;
+  padding: 5px;
+  p {
+    margin: 0;
+  }
+  time {
+    font-weight: bold;
+  }
+}

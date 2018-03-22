@@ -1,0 +1,14 @@
+@import  '../variables.scss';
+.header {
+  padding: 35px 25px;
+  background: pink;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  a {
+    text-transform: uppercase;
+    font: $base-font;
+    color: $text-color;
+    font-weight: bold;
+  }
+}
