@@ -1,5 +1,4 @@
-# alena_makarova_todo
-## My first app on ReactJs for JS Advanced cource
+# My first app on ReactJs for JS Advanced cource
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
