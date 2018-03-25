@@ -2,22 +2,20 @@ import { Aside } from '../Aside';
 import { Content } from '../Content';
 
 
-import  './main.scss';
+import './main.scss';
 
 
-const Error = ({text, color}) => {
-  console.log(text);
-  const styles = {color}; // {color: "red"}
-  return <mark style={styles}>{text || 'Some default text'}</mark>;
+const Error = ({ text, color }) => {
+  const styles = { color };
+  return <mark style={styles}>{ text || 'Some default text' }</mark>;
 };
 
 
-const List = ({ list, field, ordered}) => {
+const List = ({ list, field, ordered }) => {
   const items = (list || [])
-    .map(el => <li key={el.id}>{el[field || 'name']}</li>);
-  return ordered ?  <ul>{items}</ul> : <ol>{items}</ol>;
-
-}; // [] - if array = undefined
+    .map(el => <li key={el.id}>{ el[field || 'name'] }</li>);
+  return ordered ? <ul>{items}</ul> : <ol>{ items }</ol>;
+};
 const users = [
   { id: 123, title: 'Patrik' },
   { id: 46, title: 'Teresa' },
@@ -25,21 +23,19 @@ const users = [
 ];
 
 
-
-
 export const Main = () => (
   <React.Fragment>
     <List
       list={users}
-      field={"title"}
+      field="title"
     />
     <Error
-      text={"some text"}
-      color={"red"}
+      text="some text"
+      color="red"
     />
-  <main className={"main"}>
-    <Aside/>
-    <Content />
-  </main>
+    <main className="main">
+      <Aside />
+      <Content />
+    </main>
   </React.Fragment>
 );
