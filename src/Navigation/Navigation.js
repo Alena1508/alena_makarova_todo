@@ -1,11 +1,12 @@
-import React from 'react';
 import  './navigation.scss';
 
+
+const navLinks = ['Home', 'Products', 'Contacts'];
+const navLinksItem = navLinks.map((navLink) =>
+  <li>{navLink}</li>
+);
 export const Navigation = () => (
     <nav className={'main-nav'}>
-      <ul>
-        <li>Home</li>
-        <li>Product</li>
-      </ul>
+      <ul>{navLinksItem}</ul>
     </nav>
 );
