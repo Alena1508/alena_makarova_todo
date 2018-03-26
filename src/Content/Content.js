@@ -4,15 +4,16 @@ import './content.scss';
 const Greeting = ({ name }) => {
   const hour = new Date().getHours();
   let partDay = '';
-  if (hour > 22.00 && hour < 3.00) {
-    partDay = 'night';
-  } else if (hour > 3.00 && hour < 12.00) {
+
+  if (hour >= 3 && hour < 12) {
     partDay = 'morning';
-  } else if (hour > 12.00 && hour < 18.00) {
+  } else if (hour >= 12 && hour < 18) {
     partDay = 'afternoon';
-  } else if (hour > 18.00 && hour < 22.00) {
+  } else if (hour >= 18 && hour < 22) {
     partDay = 'evening';
   }
+  partDay = 'night';
+
   return <p>Good { partDay }, { name }!</p>;
 };
 
@@ -20,13 +21,14 @@ const Number = ({
   from, to, odd, even
 }) => {
   const num = [];
+
   for (let i = from; i < to; i++) {
     if (odd) {
       if ((i % 2) === 0) {
         num.push(<li>{ i }</li>);
       }
     } else if (even) {
-      if (!((i % 2) === 0)) {
+      if (i % 2 !== 0) {
         num.push(<li>{ i }</li>);
       }
     } else {
@@ -50,6 +52,7 @@ const UsersList = () => {
 };
 
 const Time = () => <time>{ new Date().toTimeString() }</time>;
+
 export const Content = () => (
   <div className="content">
     <p>
@@ -57,7 +60,11 @@ export const Content = () => (
     </p>
     <Time />
     <Greeting name="Alena" />
-    <Number from={5} to={10} odd />
+    <Number
+      from={5}
+      to={10}
+      odd
+    />
     <UsersList users="users" />
   </div>
 );

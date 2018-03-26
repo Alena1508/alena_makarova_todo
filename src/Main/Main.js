@@ -7,6 +7,7 @@ import './main.scss';
 
 const Error = ({ text, color }) => {
   const styles = { color };
+
   return <mark style={styles}>{ text || 'Some default text' }</mark>;
 };
 
