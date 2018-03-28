@@ -1,5 +1,7 @@
 import './content.scss';
 
+import { Counter } from './Counter';
+
 
 const Greeting = ({ name }) => {
   const hour = new Date().getHours();
@@ -53,6 +55,8 @@ const UsersList = () => {
 
 const Time = () => <time>{ new Date().toTimeString() }</time>;
 
+
+
 export const Content = () => (
   <div className="content">
     <p>
@@ -65,6 +69,7 @@ export const Content = () => (
       to={10}
       odd
     />
+    <Counter />
     <UsersList users="users" />
   </div>
 );
