@@ -1,3 +1,6 @@
+import { User } from './User';
+
+
 import './aside.scss';
 
 export const Aside = () => (
@@ -10,5 +13,6 @@ export const Aside = () => (
         <a href="/ceo"> CEO </a>
       </li>
     </ul>
+    <User />
   </aside>
 );

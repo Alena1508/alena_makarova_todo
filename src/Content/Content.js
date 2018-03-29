@@ -55,8 +55,6 @@ const UsersList = () => {
 
 const Time = () => <time>{ new Date().toTimeString() }</time>;
 
-
-
 export const Content = () => (
   <div className="content">
     <p>
