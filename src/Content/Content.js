@@ -5,13 +5,14 @@ import {Form} from '../Form'
 import {Timer} from "../Timer";
 
 
-stopTimer = () => {
+export class Content extends React.Component {
 
+  render() {
+    return (
+      <div className="content">
+        <Form />
+        <Timer/>
+      </div>
+    )
+  }
 };
-export const Content = () => (
-  <div className="content">
-    <Form/>
-    <Timer/>
-    <button onClick={stopTimer()}>Stop</button>
-  </div>
-);

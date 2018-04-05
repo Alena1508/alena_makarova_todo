@@ -3,10 +3,6 @@ export class Timer extends React.Component {
     time: ''
   };
 
-  constructor(props) {
-    super(props);
-    console.log('lala');
-  }
 
   componentDidMount() {
     setInterval(this.createTimer, 1000);
@@ -14,12 +10,11 @@ export class Timer extends React.Component {
 
   componentWillUnmount() {
     console.log('unmount');
-    clearInterval(this.createTimer());
+    clearInterval(this.state.time);
   }
 
   createTimer = () => {
     let dateNow = new Date();
-    console.log(dateNow);
     let time = `${dateNow.getHours()}:${dateNow.getMinutes()}:${dateNow.getSeconds()}`;
     this.setState({
       time
