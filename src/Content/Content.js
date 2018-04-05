@@ -5,13 +5,13 @@ import {Form} from '../Form'
 import {Timer} from "../Timer";
 
 
-stopTimer = () => {
-
-};
+// stopTimer = () => {
+//
+// };
 export const Content = () => (
   <div className="content">
-    <Form/>
-    <Timer/>
-    <button onClick={stopTimer()}>Stop</button>
+    <Form excluded={['email']} disabled={['first name']}/>
+    {/*<Timer/>*/}
+    {/*<button onClick={stopTimer()}>Stop</button>*/}
   </div>
 );
