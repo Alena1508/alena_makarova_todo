@@ -44,11 +44,15 @@ export class Form extends React.Component {
     this.setState({
       [field.label]: stateField
     });
-  }
+  };
 
 
   getDisabledState() {
-    return this.fields.some(({label}) => {
+    const {excluded=[], disabled=[]} = this.props;
+
+    return this.fields
+      .filter(({label}) => !excluded.includes(label) && !disabled.includes(label))
+      .some(({label}) => {
       const {value, error} = this.state[label];
       return !value || error;
     })
@@ -66,7 +70,16 @@ export class Form extends React.Component {
 
     if(error) return;
     console.log(this.state); // {email: '...', name:'Alenka'
+  };
 
+  getFormValue() {
+    const form = {};
+
+    this.fields.forEach((field) => {
+      form[field.label] = this.state[field.label].value;
+    });
+
+    return form;
   }
 
 

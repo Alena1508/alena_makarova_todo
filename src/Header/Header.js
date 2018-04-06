@@ -6,7 +6,7 @@ const navLinks = ['Home', 'Products', 'Contacts'];
 
 export const Header = () => (
   <header className="header">
-    <a href="/">Logo</a>
+    <a href="/"><img src="images/logo.png" alt="todo" /></a>
     <Navigation navLinks={navLinks} />
   </header>
 );
