@@ -1,17 +1,16 @@
 import './content.scss';
 
-// import { Counter } from './Counter';
+
 import {Form} from '../Form'
-import {Timer} from "../Timer";
+import {Field} from "./Field";
 
 
-// stopTimer = () => {
-//
-// };
 export const Content = () => (
   <div className="content">
     <Form excluded={['email']} disabled={['first name']}/>
-    {/*<Timer/>*/}
-    {/*<button onClick={stopTimer()}>Stop</button>*/}
+    <br />
+    <br />
+    <br />
+    <Field />
   </div>
 );
