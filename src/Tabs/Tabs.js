@@ -1,11 +1,20 @@
+import './tabs.scss'
 import { TabNav } from './TabNav';
 import { TabContent } from './TabContent';
+import PropTypes from 'prop-types';
 
 export class Tabs extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { content: '', id: 0 };
+    this.state = {
+      content: '',
+      id: 0
+    };
   }
+
+  componentDidMount() {
+    this.clickTab(this.state.id);
+  };
 
   clickTab = (id) => {
     this.setState({
@@ -25,3 +34,10 @@ export class Tabs extends React.Component {
       </section>
     );  }
 }
+
+Tabs.propTypes = {
+  tabs: PropTypes.array
+};
+Tabs.defaultProps = {
+  tabs: []
+};
