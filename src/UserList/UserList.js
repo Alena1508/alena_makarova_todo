@@ -3,6 +3,7 @@ import './userList.scss';
 export class UserList extends React.Component {
   state = {
     tasks: [],
+    loadedTasks: [],
     completed: false,
     value: ''
   };
@@ -14,21 +15,33 @@ export class UserList extends React.Component {
   getTasks = () => {
     fetch(`https://jsonplaceholder.typicode.com/todos`)
       .then(data => data.json())
-      .then(tasks => this.setState({tasks}));
+      .then(loadedTasks => this.setState({
+        tasks: loadedTasks,
+        loadedTasks
+      }));
   };
-
 
   findTasks = (e) => {
-    const value = e.target.value.toLowerCase();
-
-    this.setState({value});
-    fetch(`https://jsonplaceholder.typicode.com/todos`)
-      .then(data => data.json())
-      .then(tasks => this.setState({ tasks: tasks.filter((task) => {
-        return task.title.toLowerCase().includes(value);
-        }) }));
+    const value = e.target.value;
+    this.setState({
+      value,
+      tasks: this.state.loadedTasks.filter((task) => {
+        return task.title.includes(value);
+      })
+    });
   };
 
+  removeTask = (index) => {
+    this.state.tasks.splice(index, 1);
+    this.setState({tasks: this.state.tasks});
+  };
+
+  doneTask = (index) => {
+    let tasks = this.state.tasks;
+    let currentTask = tasks[index];
+    currentTask.completed = !currentTask.completed;
+    this.setState({tasks});
+  };
 
   render() {
     return (
@@ -43,17 +56,23 @@ export class UserList extends React.Component {
           this.state.tasks.length > 0 ?
             <ul className="task-list">
               {
-                this.state.tasks.map(task =>
+                this.state.tasks.map((task, index) =>
                   <li
                     key={task.id}
                   >
                     <span
-                      className={task.completed ? 'completed task-name' : 'task-name'}
+                      className={`task-name ${task.completed ? 'completed' : null}`}
                     >
                       {task.title}
                       </span>
-                    <span className="status delete">X</span>
-                    <span className="status done">V</span>
+                    <span
+                      className="status delete"
+                      onClick={() => this.removeTask(index)}
+                    >X</span>
+                    <span
+                      className="status done"
+                      onClick={() => this.doneTask(index)}
+                    >V</span>
                     <span className="status in-progress">~</span>
                   </li>
                 )
