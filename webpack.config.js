@@ -18,6 +18,10 @@ const plugins = [
   new ExtractTextPlugin({
     filename: 'styles.css',
     allChunks: true
+  }),
+  new webpack.ProvidePlugin({
+    React: 'react',
+    // Component: ['react', Component]
   })
 ];
 
@@ -37,7 +41,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['env', 'react'],
-            plugins: ['syntax-dynamic-import']
+            plugins: ['syntax-dynamic-import', 'transform-class-properties']
           }
         }
       },
@@ -51,8 +55,16 @@ module.exports = {
             {loader: "sass-loader"}
           ]
         })
+      },
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          emitWarning: true
+        }
       }
-
     ]
   },
 
@@ -63,6 +75,7 @@ module.exports = {
       chunks: 'all'
     },
   },
+  mode: 'development',
 
   devServer: {
     contentBase: path.resolve('dist'),

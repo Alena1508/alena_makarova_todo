@@ -1,11 +1,13 @@
-import React from 'react';
-import  './navigation.scss';
+import './navigation.scss';
 
-export const Navigation = () => (
-    <nav className={'main-nav'}>
-      <ul>
-        <li>Home</li>
-        <li>Product</li>
-      </ul>
+
+export const Navigation = ({ navLinks }) => {
+  const navLinksItem = navLinks.map(navLink =>
+    <li><a href={`/${navLink.toLowerCase()}`}>{navLink}</a></li>);
+
+  return (
+    <nav className="main-nav">
+      <ul>{navLinksItem}</ul>
     </nav>
-);
+  );
+};

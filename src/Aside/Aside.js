@@ -1,15 +1,18 @@
-import React from 'react';
-import  './aside.scss';
+import { User } from './User';
+
+
+import './aside.scss';
 
 export const Aside = () => (
-  <aside className={'aside'}>
+  <aside className="aside">
     <ul>
       <li>
-        <a href={'#'}> Front-End </a>
+        <a href="/FrontEnd"> Front-End </a>
       </li>
       <li>
-        <a href={'#'}> CEO </a>
+        <a href="/ceo"> CEO </a>
       </li>
     </ul>
+    <User />
   </aside>
 );
