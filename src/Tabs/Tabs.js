@@ -1,43 +1,40 @@
 import './tabs.scss'
 import { TabNav } from './TabNav';
-import { TabContent } from './TabContent';
+import { Tab } from './Tab';
 import PropTypes from 'prop-types';
 
 export class Tabs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: '',
       id: 0
     };
   }
 
-  componentDidMount() {
-    this.clickTab(this.state.id);
+  clickTab = (id) => {
+    this.setState({ id });
   };
 
-  clickTab = (id) => {
-    this.setState({
-      content: this.props.tabs[id].content,
-      id
-    });
-  }
   render() {
+    const tabs = this.props.children.filter(child => child.type === Tab);
+    const links = tabs.map(tab => tab.props.title);
+    const contents = tabs.map(tab => tab.props.children);
     return (
       <section className="tab">
         <TabNav
-          list={
-            this.props.tabs.map(({ id, title }) => ({ id, title }))
-          }
+          list={links}
+          active={this.state.id}
           select={this.clickTab} />
-        <TabContent content={this.state.content} />
+        <div>
+          {contents[this.state.id]}
+        </div>
       </section>
     );  }
 }
 
-Tabs.propTypes = {
-  tabs: PropTypes.array
-};
-Tabs.defaultProps = {
-  tabs: []
-};
+// Tabs.propTypes = {
+//   tabs: PropTypes.array
+// };
+// Tabs.defaultProps = {
+//   tabs: []
+// };

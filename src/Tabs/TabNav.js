@@ -1,4 +1,4 @@
-export const TabNav = ({ list, select }) => {
+export const TabNav = ({ list, select, active }) => {
   const onClick = (e, id) => {
     select(id);
     e.preventDefault();
@@ -8,11 +8,14 @@ export const TabNav = ({ list, select }) => {
 
   return (
     <nav className="nav-tab">
-      <ul> {list.map(el =>
-        (<li key={el.id}>
+      <ul> {list.map((el, index) =>
+        (<li
+          key={index}
+          className={active === index ? 'active' : null}
+        >
           <a href="#"
-             onClick={e => onClick(e, el.id)}>
-            {el.title}
+             onClick={e => onClick(e, index)}>
+            {el}
           </a>
         </li>)
       )}

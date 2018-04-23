@@ -1,12 +1,15 @@
-import { Navigation } from '../Navigation';
+import {Navigation} from '../Navigation';
 
 import './header.scss';
 
-const navLinks = ['Home', 'Products', 'Contacts'];
 
-export const Header = () => (
-  <header className="header">
-    <a href="/"><img src="images/logo.png" alt="todo" /></a>
-    <Navigation navLinks={navLinks} />
-  </header>
-);
+export const Header = ({user, login, logout }) => {
+
+  return (
+    <header className="header">
+      <a href="/"><img src="images/logo.png" alt="todo"/></a>
+      <Navigation user={user}/>
+      {login && <button onClick={() => logout()}>Logout</button>}
+    </header>
+  )
+};

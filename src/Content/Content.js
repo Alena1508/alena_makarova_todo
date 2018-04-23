@@ -3,7 +3,9 @@ import './content.scss';
 // import { Counter } from './Counter';
 import {Form} from '../Form'
 import {Timer} from "../Timer";
-import {Tabs} from "../Tabs";
+import {Tabs, Tab} from "../Tabs";
+import {TaskList} from "../TaskList";
+import {Redirect} from "react-router-dom";
 
 const tabs = [
   {id: 0, title: 'Tab 1', content: 'Some text is here'},
@@ -11,9 +13,30 @@ const tabs = [
   {id: 2, title: 'Tab 3', content: 'Third text'}
 ];
 
-export const Content = () => (
-  <div className="content">
-    <Form excluded={['email']} disabled={['first name']}/>
-    <Tabs tabs={tabs} />
-  </div>
-);
+export class Content extends React.Component {
+  state = {
+    tasks: false
+  }
+
+  render()
+  {
+    return (
+      <div className="content">
+        <Form excluded={['email']} disabled={['first name']}/>
+        <TaskList/>
+        <Tabs>
+          <Tab title="Tab 1">
+            <h1>Title</h1>
+            <article>Lorem ipsum</article>
+          </Tab>
+          <Tab title="Tab 2">
+            <h1>Titlegf2</h1>
+            <article>Lorem ipsum</article>
+          </Tab>
+        </Tabs>
+        <button onClick={() => this.setState({ tasks: true })}>Back</button>
+        {this.state.tasks && <Redirect to="/tasks" />}
+      </div>
+    )
+  }
+};

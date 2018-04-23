@@ -1,13 +1,11 @@
+import { BrowserRouter as Router } from 'react-router-dom';
 import ReactDom from 'react-dom';
-import { Header } from './Header';
-import { Main } from './Main';
-import { Footer } from './Footer';
 
-const component = (
-  <React.Fragment>
-    <Header />
-    <Main />
-    <Footer />
-  </React.Fragment>
+import { App } from './app.component';
+
+const Root = (
+  <Router>
+    <App />
+  </Router>
 );
-ReactDom.render(component, document.getElementById('app'));
+ReactDom.render(Root, document.getElementById('app'));
