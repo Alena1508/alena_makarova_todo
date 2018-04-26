@@ -90,7 +90,7 @@ export const TaskList = () => {
   ];
 
   return (
-    <Tabs>
+    <Tabs selectedIndex={new Date().getDay()}>
       {tasksInWeek.map((tasks, index) => <Tab
         key={index}
         title={days[index]}

@@ -4,8 +4,8 @@ import {NotFound} from "../NotFound";
 import { TaskList } from "../TaskList";
 import { Main } from "../Main";
 
-export class Logined extends React.Component {
-  render() {
+export const Logined = () => {
+
     return(
         <Switch>
           <Route
@@ -32,5 +32,4 @@ export class Logined extends React.Component {
           />
         </Switch>
       )
-  }
-}
+};

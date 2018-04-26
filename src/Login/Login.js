@@ -29,11 +29,15 @@ export class Login extends React.Component {
     return (
       loading ? <Loader /> :
         <form onSubmit={(e) => this.submit(e)}>
-        <input type="text" placeholder="Name"
-               name="name" required/>
-        <input type="password" placeholder="Password"
+        <input type="text"
+               placeholder="Name"
+               name="name"
                required/>
-        <input type="submit" value="Логин"/>
+        <input type="password"
+               placeholder="Password"
+               required/>
+        <input type="submit"
+               value="Логин"/>
       </form>
     );
   }
