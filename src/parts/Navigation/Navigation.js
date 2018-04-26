@@ -24,7 +24,7 @@ export const Navigation = ({ user }) => (
         </NavLink>
       </li>
 
-      {user && <li><a href="">{user}</a></li>}
+      {user && <li><strong>{user.firstName}</strong></li>}
     </ul>
   </nav>
 );

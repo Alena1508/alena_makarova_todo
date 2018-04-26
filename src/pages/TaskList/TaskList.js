@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Tabs, Tab } from '../Tabs';
+import { Tabs, Tab } from '../../components/Tabs/index';
 
 export const TaskList = () => {
   const days = ['Sun', 'Mon', 'Thur', 'Wed', 'Th', 'Fr', 'St'];

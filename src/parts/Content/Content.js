@@ -1,10 +1,10 @@
 import './content.scss';
 
 // import { Counter } from './Counter';
-import {Form} from '../Form'
-import {Timer} from "../Timer";
-import {Tabs, Tab} from "../Tabs";
-import {TaskList} from "../TaskList";
+import {Form} from '../../components'
+// import {Timer} from "../../Timer";
+import {Tabs, Tab} from "../../components";
+// import {TaskList} from "../../pages";
 import {Redirect} from "react-router-dom";
 
 const tabs = [
@@ -23,7 +23,7 @@ export class Content extends React.Component {
     return (
       <div className="content">
         <Form excluded={['email']} disabled={['first name']}/>
-        <TaskList/>
+        {/*<TaskList/>*/}
         <Tabs>
           <Tab title="Tab 1">
             <h1>Title</h1>

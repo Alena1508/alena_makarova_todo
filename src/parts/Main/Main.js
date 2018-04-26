@@ -1,5 +1,5 @@
-import { Aside } from '../Aside';
-import { Content } from '../Content';
+import { Aside } from '../../parts';
+import { Content } from '../../parts';
 import { Buttons } from './Button';
 
 import './main.scss';

@@ -1,8 +1,8 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Task } from "../Task";
-import {NotFound} from "../NotFound";
-import { TaskList } from "../TaskList";
-import { Main } from "../Main";
+import { Task } from "../pages/Task";
+import {NotFound} from "../parts/NotFound";
+import { TaskList } from "../pages/TaskList";
+import { Main } from "../parts";
 
 export class Logined extends React.Component {
   render() {
