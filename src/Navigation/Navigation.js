@@ -1,13 +1,30 @@
 import './navigation.scss';
+import {NavLink} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 
-export const Navigation = ({ navLinks }) => {
-  const navLinksItem = navLinks.map(navLink =>
-    <li><a href={`/${navLink.toLowerCase()}`}>{navLink}</a></li>);
+export const Navigation = ({ user }) => (
+  <nav className="main-nav">
+    <ul>
+      <li>
+        <NavLink
+          to="/"
+          exact
+          activeClassName="active"
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/tasks"
+          activeClassName="active"
+        >
+          Tasks
+        </NavLink>
+      </li>
 
-  return (
-    <nav className="main-nav">
-      <ul>{navLinksItem}</ul>
-    </nav>
-  );
-};
+      {user && <li><a href="">{user}</a></li>}
+    </ul>
+  </nav>
+);
