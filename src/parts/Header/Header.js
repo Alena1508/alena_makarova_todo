@@ -7,7 +7,7 @@ export const Header = ({user, logout }) => {
 
   return (
     <header className="header">
-      <a href="/"><img src="images/logo.png" alt="todo"/></a>
+      <a href="/"><img src="/images/logo.png" alt="todo"/></a>
       <Navigation user={user}/>
       {user && <button onClick={() => logout(null)}>Logout</button>}
     </header>

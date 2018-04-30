@@ -29,7 +29,10 @@ export class App extends React.Component {
       .then((data) => {
         this.setLoginState(data);
       })
-      .catch(err => console.log('Can\'t login', err));
+      .catch(err => {
+        this.setLoginState(null);
+        console.log('Can\'t login', err);
+      });
   }
 
 

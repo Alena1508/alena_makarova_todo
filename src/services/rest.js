@@ -10,7 +10,14 @@ export const request = (url, method = 'GET', body, options) => {
   Object.assign(fetchOpts, options);
 
   return fetch(`${BASE_URL}${url}`, fetchOpts)
-    .then(data => data.json())
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        return Promise.reject(data.error);
+      }
+
+      return Promise.resolve(data);
+    })
 };
 
 export const rest = {

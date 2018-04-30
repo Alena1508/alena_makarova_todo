@@ -25,7 +25,8 @@ export class Login extends React.Component {
         // .then(data => data.json())
         .then((user) => {
           this.onLogin(user);
-        });
+        })
+        .catch(err => console.log('Can\'t login', err));
 
     };
 
