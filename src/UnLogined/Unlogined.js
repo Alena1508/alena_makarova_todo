@@ -1,5 +1,7 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Login } from "../pages/Login";
+import { Login } from '../pages/Login';
+import {Registration} from '../pages/Registration/Registration';
+import { ThankyouPage } from '../parts/ThankyouPage';
 
 export class Unlogined extends React.Component {
   render() {
@@ -8,6 +10,14 @@ export class Unlogined extends React.Component {
         <Route
           path="/login"
           render={() => <Login onLogin={this.props.onLogin} />}
+        />
+        <Route
+          path="/registration"
+          render={() => <Registration />}
+        />
+        <Route
+          path="/thankYouPage"
+          component={ThankyouPage}
         />
         <Redirect to="/login" />
       </Switch>

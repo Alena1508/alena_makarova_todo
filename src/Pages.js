@@ -1,5 +1,5 @@
-import {Logined} from "./Logined";
-import {Unlogined} from "./UnLogined";
+import { Logined } from './Logined';
+import { Unlogined } from './UnLogined';
 
 
 export class Pages extends React.Component {
