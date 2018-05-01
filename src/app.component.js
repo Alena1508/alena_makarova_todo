@@ -2,7 +2,8 @@ import { Route } from 'react-router-dom';
 import { Header, Footer } from './parts';
 import { Pages } from './Pages';
 import {Loader} from "./components/Loader/Loader";
-import { checkUser } from './services';
+import { checkUser, logout } from './services';
+
 
 export class App extends React.Component {
   state = {
@@ -10,18 +11,22 @@ export class App extends React.Component {
   };
 
   setLoginState = (user) => {
-    this.setState({user});
+    this.setState({ user });
   };
 
+  // setLogout = () => {
+  //   fetch('http://localhost:8081/logout', {
+  //     method: 'GET',
+  //     credentials: 'include',
+  //     headers: {
+  //       'Content-type': 'application/json; charset=utf-8'
+  //     }
+  //   })
+  //     .then(this.setState({ user: null }))
+  // };
   setLogout = () => {
-    fetch('http://localhost:8081/logout', {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        'Content-type': 'application/json; charset=utf-8'
-      }
-    })
-      .then(this.setState({ user: null }))
+    logout()
+      .then(this.setState({ user: null }));
   };
 
   componentDidMount() {

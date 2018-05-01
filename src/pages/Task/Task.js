@@ -26,7 +26,7 @@ export class Task extends React.Component {
     }
 
     getTask(task)
-      .then(task => this.setState({ ...task}))
+      .then(task => this.setState({ ...task}));
   }
 
   getDay() {

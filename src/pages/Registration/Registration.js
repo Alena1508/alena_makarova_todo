@@ -10,7 +10,6 @@ export class Registration extends React.Component {
     this.state = {
       loading: false
     };
-    // this.onLogin = this.props.onLogin;
   }
 
 
@@ -26,7 +25,7 @@ export class Registration extends React.Component {
 
 
     registration({ firstname, lastname, email, password, passwordRepeat })
-      .then(() => this.props.history.push('/thankYouPage'))
+      .then(() => console.log('Success!'))
       .catch(err => console.log('Can\'t login', err));
 
   };
