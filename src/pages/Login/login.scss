@@ -1,0 +1,51 @@
+.form-wrapper {
+  min-height: 100vh;
+}
+.form-login {
+  width: 50%;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  &__field {
+    width: 50%;
+    margin: 20px auto;
+    border: 1px solid #D0A154;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 18px;
+    &:focus {
+      outline: none;
+    }
+  }
+  &__buttons {
+    width: 53%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto;
+  }
+  &__btn {
+    width: 45%;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: bold;
+    background: #D0A154;
+    border: 1px solid #D0A154;
+    border-radius: 5px;
+    color: black;
+    transition: background 0.3s;
+    cursor: pointer;
+    &:hover {
+      background: white;
+    }
+    a {
+      text-decoration: none;
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: bold;
+      color: black;
+    }
+  }
+}

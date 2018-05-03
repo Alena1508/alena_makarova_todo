@@ -2,12 +2,13 @@ import { Aside } from '../../parts';
 import { Content } from '../../parts';
 import { Buttons } from './Button';
 
+
 import './main.scss';
 
 export class Main extends React.Component {
   state = {
     users: [],
-    posts: []
+    posts: [],
   };
 
   componentWillMount() {
@@ -26,11 +27,13 @@ export class Main extends React.Component {
       .then(posts => this.setState({ posts }));
   };
 
+
+
   render() {
     return (
       <React.Fragment>
         <main className="main">
-          <Aside />
+          <Aside user={this.props.user} />
           <Content />
           <div className="user">
             {

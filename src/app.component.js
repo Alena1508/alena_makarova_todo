@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom';
 import { Header, Footer } from './parts';
 import { Pages } from './Pages';
-import {Loader} from "./components/Loader/Loader";
+import { Loader } from './components/Loader/Loader';
 import { checkUser, logout } from './services';
 
 
@@ -14,16 +14,6 @@ export class App extends React.Component {
     this.setState({ user });
   };
 
-  // setLogout = () => {
-  //   fetch('http://localhost:8081/logout', {
-  //     method: 'GET',
-  //     credentials: 'include',
-  //     headers: {
-  //       'Content-type': 'application/json; charset=utf-8'
-  //     }
-  //   })
-  //     .then(this.setState({ user: null }))
-  // };
   setLogout = () => {
     logout()
       .then(this.setState({ user: null }));
@@ -41,10 +31,8 @@ export class App extends React.Component {
   }
 
 
-
   render() {
     const { user } = this.state;
-
 
     return (
       <React.Fragment>

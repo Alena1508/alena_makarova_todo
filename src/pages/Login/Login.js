@@ -24,7 +24,6 @@ export class Login extends React.Component {
 
 
     login({ email, password })
-    // .then(data => data.json())
       .then((user) => {
         this.onLogin(user);
       })
@@ -36,10 +35,13 @@ export class Login extends React.Component {
     const { loading } = this.state;
     return (
       loading ? <Loader /> :
+      <div className="form-wrapper">
         <form
+          className="form-login"
           onSubmit={ (e) => this.submit(e) }
         >
           <input
+            className="form-login__field"
             type="text"
             placeholder="Name"
             name="name"
@@ -47,22 +49,28 @@ export class Login extends React.Component {
             required
           />
           <input
+            className="form-login__field"
             type="password"
             name="password"
             placeholder="Password"
             defaultValue="admin"
             required
           />
-          <input
-            type="submit"
-            value="Логин"
-          />
-          <button>
-            <Link to={ `/registration` } >
-              Registration
-            </Link>
-          </button>
+          <div className="form-login__buttons">
+            <button
+              className="form-login__btn"
+              type="submit"
+            >
+              Login
+            </button>
+            <button className="form-login__btn">
+              <Link to={`/registration`}>
+                Registration
+              </Link>
+            </button>
+          </div>
         </form>
+      </div>
     );
   }
 };

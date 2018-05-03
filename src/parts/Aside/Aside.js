@@ -3,7 +3,7 @@ import { User } from './User';
 
 import './aside.scss';
 
-export const Aside = () => (
+export const Aside = ({ user }) => (
   <aside className="aside">
     <ul>
       <li>
@@ -13,6 +13,6 @@ export const Aside = () => (
         <a href="/ceo"> CEO </a>
       </li>
     </ul>
-    <User />
+    <User user={user} />
   </aside>
 );

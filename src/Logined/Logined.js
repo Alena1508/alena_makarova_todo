@@ -6,12 +6,19 @@ import { Main } from "../parts";
 
 export class Logined extends React.Component {
   render() {
+
+    const { user } = this.props;
     return(
         <Switch>
           <Route
             path="/"
             exact
-            component={Main}
+            render={routeProps =>
+              <Main
+                routeProps={routeProps}
+                user={user}
+              />
+            }
           />
           <Route
             path="/tasks"

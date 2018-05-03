@@ -1,20 +1,24 @@
+import { getInfoTask} from '../../services/tasks';
+
 export class User extends React.Component {
   state = {
-    userName: 'Alena',
-    tasks: 10,
-    done: 3,
-    progress: 1,
-    waiting: 5
+    tasksInfo: {}
   };
 
+  componentDidMount() {
+    getInfoTask()
+      .then(tasksInfo => this.setState({ tasksInfo }));
+  }
+
   render() {
+    const { tasksInfo } = this.state;
     return (
       <div className="user-info">
-        <h2>{`Hello ${this.state.userName}`}</h2>
-        <p>{`You have ${this.state.tasks} tasks`}</p>
-        <p>{`Done: ${this.state.done} `}</p>
-        <p>{`In progress: ${this.state.progress} `}</p>
-        <p>{`Waiting: ${this.state.waiting} `}</p>
+        {this.props.user && <h2>{this.props.user.firstName}</h2>}
+        <p>{`You have ${tasksInfo.total} tasks`}</p>
+        <p>{`Done: ${tasksInfo.done} `}</p>
+        <p>{`In progress: ${tasksInfo.inProgress} `}</p>
+        <p>{`Waiting: ${tasksInfo.waiting} `}</p>
         <a href="/list">Go to the task list</a>
       </div>
     );

@@ -1,5 +1,9 @@
 @import "../../variables";
 .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 15px;
   color: $white;
   background: $black;
   text-align: center;
