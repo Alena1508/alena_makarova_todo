@@ -4,20 +4,20 @@ import { Header, Footer } from './parts';
 import { Pages } from './Pages';
 import { Loader } from './components/Loader/Loader';
 import { checkUser, logout, errObserver } from './services';
+import { connect } from 'react-redux';
+import { setUser, removeUser } from './store';
+import { withRouter } from 'react-router-dom';
 
 
-export class App extends React.Component {
-  state = {
-    user: undefined
-  };
+export class AppComponent extends React.Component {
 
   setLoginState = (user) => {
-    this.setState({ user });
+    this.props.dispatch(setUser(user));
   };
 
   setLogout = () => {
     logout()
-      .then(this.setState({ user: null }));
+      .then(this.props.dispatch(removeUser()));
   };
 
   componentDidMount() {
@@ -29,7 +29,7 @@ export class App extends React.Component {
         this.setLoginState(null);
         console.log('Can\'t login', err);
       });
-    errObserver.addObserver((err = 'Something wrong') => this.state.user !== undefined && this.container.error(
+    errObserver.addObserver((err = 'Something wrong') => this.props.user !== false && this.container.error(
       <strong>{err}</strong>,
       <em>Error</em>
     ));
@@ -37,7 +37,7 @@ export class App extends React.Component {
 
 
   render() {
-    const { user } = this.state;
+    const { user } = this.props;
 
     return (
       <React.Fragment>
@@ -49,7 +49,7 @@ export class App extends React.Component {
                 user={user}
         />
         {
-          user !== undefined ?
+          user !== false ?
             <Pages user={user}
                    setLoginState={this.setLoginState}
             /> : <Loader />
@@ -59,3 +59,9 @@ export class App extends React.Component {
     );
   }
 }
+
+const mapStoreToProps = state => ({
+  user: undefined
+});
+
+export const App = withRouter(connect(mapStoreToProps)(AppComponent));
