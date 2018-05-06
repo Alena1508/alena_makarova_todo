@@ -1,6 +1,6 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Task } from "../pages/Task";
-import {NotFound} from "../parts/NotFound";
+import {NotFound} from "../pages/NotFound";
 import { TaskList } from "../pages/TaskList";
 import { Main } from "../parts";
 

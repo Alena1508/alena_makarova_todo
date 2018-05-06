@@ -1,7 +1,7 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Login } from '../pages/Login';
 import {Registration} from '../pages/Registration/Registration';
-import { ThankyouPage } from '../parts/ThankyouPage';
+import { ThankyouPage } from '../pages/ThankyouPage';
 
 export class Unlogined extends React.Component {
   render() {
@@ -13,7 +13,8 @@ export class Unlogined extends React.Component {
         />
         <Route
           path="/registration"
-          render={() => <Registration />}
+          // render={() => <Registration />}
+          component={Registration}
         />
         <Route
           path="/thankYouPage"

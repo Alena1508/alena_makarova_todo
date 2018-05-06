@@ -7,7 +7,7 @@ export class Task extends React.Component {
     this.state = {
       title: '',
       description: '',
-      is: null
+      done: undefined
     }
   }
 
@@ -35,16 +35,9 @@ export class Task extends React.Component {
 
   updateTask = (event) => {
     const { task } = this.props.match.params;
-    let promise = task === 'newtask' ? createTask(this.state) : updateTask(this.state);
+    const promise = task === 'newtask' ? createTask(this.state) : updateTask(this.state);
 
     event.preventDefault();
-
-    if(task ==='newtask') {
-      createTask(this.state)
-        .then(console.log);
-      return;
-    }
-
 
     promise
       .then(() => this.props.history.push('/tasks'));
