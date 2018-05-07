@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4790f88e-652e-417d-ac84-8b9c5e7ad612" name="Default" comment="taskList and logout">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/parts/NotFound/NotFound.js" afterPath="$PROJECT_DIR$/src/pages/NotFound/NotFound.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/parts/NotFound/index.js" afterPath="$PROJECT_DIR$/src/pages/NotFound/index.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/parts/NotFound/notFound.scss" afterPath="$PROJECT_DIR$/src/pages/NotFound/notFound.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/parts/ThankyouPage/ThankyouPage.js" afterPath="$PROJECT_DIR$/src/pages/ThankyouPage/ThankyouPage.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/parts/ThankyouPage/index.js" afterPath="$PROJECT_DIR$/src/pages/ThankyouPage/index.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/parts/ThankyouPage/thankyouPage.scss" afterPath="$PROJECT_DIR$/src/pages/ThankyouPage/thankyouPage.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Logined/Logined.js" afterPath="$PROJECT_DIR$/src/Logined/Logined.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UnLogined/Unlogined.js" afterPath="$PROJECT_DIR$/src/UnLogined/Unlogined.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Form/Form.js" afterPath="$PROJECT_DIR$/src/components/Form/Form.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Tabs/tabs.scss" afterPath="$PROJECT_DIR$/src/components/Tabs/tabs.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/Registration/Registration.js" afterPath="$PROJECT_DIR$/src/pages/Registration/Registration.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/Task/Task.js" afterPath="$PROJECT_DIR$/src/pages/Task/Task.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/TaskList/TaskList.js" afterPath="$PROJECT_DIR$/src/pages/TaskList/TaskList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parts/index.js" afterPath="$PROJECT_DIR$/src/parts/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/tasks.js" afterPath="$PROJECT_DIR$/src/services/tasks.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/variables.scss" afterPath="$PROJECT_DIR$/src/variables.scss" />
-    </list>
+    <list default="true" id="4790f88e-652e-417d-ac84-8b9c5e7ad612" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,8 +40,8 @@
           <file leaf-file-name="Task.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/pages/Task/Task.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="219">
-                  <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+                <state relative-caret-position="443">
+                  <caret line="55" column="18" lean-forward="true" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
                   <folding />
                 </state>
               </provider>
@@ -331,7 +313,7 @@
       <updated>1525119125175</updated>
       <workItem from="1525119127405" duration="28192000" />
       <workItem from="1525456659979" duration="3036000" />
-      <workItem from="1525626622636" duration="15630000" />
+      <workItem from="1525626622636" duration="16324000" />
     </task>
     <task id="LOCAL-00001" summary="thnks page 50%">
       <created>1525159755523</created>
@@ -354,14 +336,22 @@
       <option name="project" value="LOCAL" />
       <updated>1525628304507</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="50% homework without redux">
+      <created>1525643187553</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1525643187553</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46858000" />
+    <option name="totallyTimeSpent" value="47552000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-568" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14232409" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -372,7 +362,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26375404" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17956989" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17956989" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -421,7 +411,8 @@
     <MESSAGE value="thnks page 50%" />
     <MESSAGE value="taskList and logout" />
     <MESSAGE value="change gitFile" />
-    <option name="LAST_COMMIT_MESSAGE" value="change gitFile" />
+    <MESSAGE value="50% homework without redux" />
+    <option name="LAST_COMMIT_MESSAGE" value="50% homework without redux" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -828,8 +819,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/Task/Task.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+        <state relative-caret-position="443">
+          <caret line="55" column="18" lean-forward="true" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
           <folding />
         </state>
       </provider>
