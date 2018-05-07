@@ -4,6 +4,8 @@ import { Pages } from './Pages';
 import { Loader } from './components/Loader/Loader';
 import { checkUser, logout } from './services';
 
+import './main.scss';
+
 
 export class App extends React.Component {
   state = {

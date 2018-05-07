@@ -1,3 +1,5 @@
+import  "./form.scss";
+
 export class Form extends Component {
   static get fields() {
     return [
@@ -18,7 +20,6 @@ export class Form extends Component {
       error: ''
     };
     this.fields.forEach(field => (this.state[field.id] = { value: '' }));
-    // this.fields = this.props.fields;
   }
 
   static getDerivedStateFromProps(nextProps) {
@@ -106,13 +107,13 @@ export class Form extends Component {
         className="form"
         onSubmit={this.save}
       >
-        <ul>{fields
+        <ul className="form-fields">{fields
           .filter(({ id }) => !excluded.includes(id))
           .map(({ label, secure, id }, index) => {
             const stateField = state[id];
 
             return (
-              <li key={label}>
+              <li key={label} className="form-fields__item">
                 <input
                   type={secure ? 'password' : 'text'}
                   name={id}
@@ -134,6 +135,7 @@ export class Form extends Component {
         <br/>
 
         <input
+          className="form-fields__btn"
           type="submit"
           value="Save"
           disabled={this.getDisabledState()}

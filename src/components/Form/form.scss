@@ -1,6 +1,60 @@
 .error {
-  border: 1px solid red;
+    border: 1px solid red;
 }
+
 .correct {
-  border: 1px solid darkgreen;
+    border: 1px solid darkgreen;
+}
+
+.form {
+    width: 50%;
+    margin: 100px auto;
+    .form-fields {
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        &__item {
+            input {
+                width: 50%;
+                margin: 20px auto;
+                border: 1px solid #D0A154;
+                border-radius: 5px;
+                padding: 10px;
+                font-size: 14px;
+                line-height: 18px;
+                display: block;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+        &__btn {
+            display: block;
+            width: 20%;
+            padding: 10px;
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: bold;
+            background: #D0A154;
+            border: 1px solid #D0A154;
+            border-radius: 5px;
+            color: black;
+            transition: background 0.3s;
+            cursor: pointer;
+            margin: 0 auto;
+            &:hover {
+                background: white;
+            }
+            a {
+                text-decoration: none;
+                font-size: 14px;
+                line-height: 18px;
+                font-weight: bold;
+                color: black;
+            }
+        }
+    }
+
 }

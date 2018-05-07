@@ -24,7 +24,8 @@ export class Tabs extends React.Component {
         <TabNav
           list={links}
           active={this.state.id}
-          select={this.clickTab} />
+          select={this.clickTab}
+        />
         <div>
           {contents[this.state.id]}
         </div>

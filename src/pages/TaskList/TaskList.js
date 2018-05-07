@@ -1,7 +1,7 @@
-import './taskList.scss';
+// import './taskList.scss';
 import {Link} from 'react-router-dom';
 import {Tabs, Tab} from '../../components/Tabs/index';
-import { getTasks, deleteTask, updateTask } from "../../services/tasks";
+import { getTasks, deleteTask, updateTask } from '../../services/tasks';
 
 export class TaskList extends React.Component {
   constructor(props) {
@@ -62,7 +62,7 @@ export class TaskList extends React.Component {
               >
                 {task.title}
               </Link>
-              {task.done? null :
+              {task.done ? null :
                 <React.Fragment>
                   <span className="taskList__status in-progress" onClick={() => this.handleInProgressTask(task)}>~</span>
                   <span className="taskList__status delete" onClick={() => this.handleDeleteTask(task.id)}>X</span>
