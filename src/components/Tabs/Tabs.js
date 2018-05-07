@@ -7,12 +7,12 @@ export class Tabs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 0
+      selectedIndex: props.selectedIndex ? props.selectedIndex : 0
     };
   }
 
-  clickTab = (id) => {
-    this.setState({ id });
+  clickTab = (selectedIndex) => {
+    this.setState({ selectedIndex });
   };
 
   render() {
@@ -23,18 +23,13 @@ export class Tabs extends React.Component {
       <section className="tab">
         <TabNav
           list={links}
-          active={this.state.id}
-          select={this.clickTab} />
+          active={this.state.selectedIndex}
+          select={this.clickTab}
+        />
         <div>
-          {contents[this.state.id]}
+          {contents[this.state.selectedIndex]}
         </div>
       </section>
     );  }
 }
 
-// Tabs.propTypes = {
-//   tabs: PropTypes.array
-// };
-// Tabs.defaultProps = {
-//   tabs: []
-// };

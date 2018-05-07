@@ -28,7 +28,7 @@ export class Registration extends React.Component {
     const { loading } = this.state;
     return (
       loading ? <Loader /> :
-          <Form onSubmit={ fields => this.submit(fields) } />
+          <Form onSubmit={fields => this.submit(fields)} />
     );
   }
 };

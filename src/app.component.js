@@ -4,6 +4,8 @@ import { Pages } from './Pages';
 import { Loader } from './components/Loader/Loader';
 import { checkUser, logout } from './services';
 
+import './common.scss';
+
 
 export class App extends React.Component {
   state = {
@@ -36,15 +38,18 @@ export class App extends React.Component {
 
     return (
       <React.Fragment>
-        <Header logout={this.setLogout}
-                user={user}
-        />
-        {
-          user !== undefined ?
-            <Pages user={user}
-                   setLoginState={this.setLoginState}
-            /> : <Loader />
-        }
+        <div className="wrapper">
+          <Header logout={this.setLogout}
+                  user={user}
+          />
+          {
+            user !== undefined ?
+              <Pages user={user}
+                     setLoginState={this.setLoginState}
+              /> : <Loader/>
+          }
+          <div className="push"></div>
+        </div>
         <Footer/>
       </React.Fragment>
     );
