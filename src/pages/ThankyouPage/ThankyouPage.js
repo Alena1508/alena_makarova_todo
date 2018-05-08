@@ -1,18 +1,14 @@
 import {Link} from 'react-router-dom';
+import './thankyouPage.scss';
 
-export class ThankyouPage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-
-  render() {
-
+export const ThankyouPage = () => {
     return (
       <React.Fragment>
-      <p>Thank you for your registration!!!!</p>
-        <Link to={ `/login`}>Login</Link>
+        <div className="thank-you">
+          <p>Thank you for your registration!!!!</p>
+          <img src="/images/thanks.gif" alt="todo"/>
+          <Link to={`/login`}>Login</Link>
+        </div>
       </React.Fragment>
     )
-  }
-}
+};

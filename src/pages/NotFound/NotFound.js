@@ -1,14 +1,13 @@
+import './notFound.scss';
 
-export class NotFound extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-
-  render() {
+export const NotFound = () => {
 
     return (
-      <p>Ooops...!!! This page not found!</p>
+      <React.Fragment>
+          <div className="not-found">
+              <p>Ooops...!!! This page not found!</p>
+              <img src="/images/404.gif" alt="todo"/>
+          </div>
+      </React.Fragment>
     )
-  }
 }

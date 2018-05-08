@@ -1,4 +1,6 @@
 import { getTask, updateTask, createTask } from '../../services';
+import { days } from '../../consts';
+import './task.scss';
 
 export class Task extends React.Component {
   constructor(props) {
@@ -44,11 +46,11 @@ export class Task extends React.Component {
   };
 
    render() {
-    const days = ['Sun', 'Mon', 'Thur', 'Wed', 'Th', 'Fr', 'St'];
     return (
-      <form onSubmit={this.updateTask}>
-        <p>Day: {days[this.state.day]}</p>
+      <form className="form-task" onSubmit={this.updateTask}>
+        <p className="form-task__title">Day: <strong>{days[this.state.day]}</strong></p>
         <input
+          className="form-task__field"
           type="text"
           name="title"
           value={this.state.title}
@@ -57,6 +59,7 @@ export class Task extends React.Component {
         />
         <br/>
         <textarea
+          className="form-task__field"
           value={this.state.description}
           name="description"
           onChange={this.onChange}
@@ -64,7 +67,7 @@ export class Task extends React.Component {
           {this.state.description}
           </textarea>
         <br/>
-        <button>Save</button>
+        <button className="form-task__btn">Save</button>
       </form>
     )
   }

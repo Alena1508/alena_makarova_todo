@@ -26,7 +26,7 @@ export class Tabs extends React.Component {
           active={this.state.selectedIndex}
           select={this.clickTab}
         />
-        <div>
+        <div className="tab-content">
           {contents[this.state.selectedIndex]}
         </div>
       </section>

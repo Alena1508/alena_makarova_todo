@@ -9,7 +9,7 @@ export const Header = ({user, logout }) => {
     <header className="header">
       <a href="/"><img src="/images/logo.svg" alt="todo" /></a>
       <Navigation user={user} />
-      {user && <button onClick={logout}>Logout</button>}
+      {user && <button className="header__logout" onClick={logout}>Logout</button>}
     </header>
   )
 };

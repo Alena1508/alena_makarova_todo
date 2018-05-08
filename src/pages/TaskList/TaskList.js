@@ -1,79 +1,89 @@
 import './taskList.scss';
 import {Link} from 'react-router-dom';
 import {Tabs, Tab} from '../../components/Tabs/index';
-import { getTasks, deleteTask, updateTask } from '../../services/tasks';
+import {getTasks, deleteTask, updateTask} from '../../services/tasks';
+import { days } from '../../consts';
 
 export class TaskList extends React.Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      tasksInWeek: []
+        this.state = {
+            tasksInWeek: []
+        };
+    }
+
+
+    date = new Date().getDay();
+
+    createTask = (day) => {
+        this.props.history.push(`tasks/newtask?day=${day}`);
     };
-  }
-  days = ['Sun', 'Mon', 'Thur', 'Wed', 'Th', 'Fr', 'St'];
-  date = new Date().getDay();
-
-  createTask = (day) => {
-    this.props.history.push(`tasks/newtask?day=${day}`);
-  };
 
 
-  handleDeleteTask = (id) => {
-    deleteTask(id)
-      .then(() => this.updateTaskList());
-  };
+    updateTaskList = () => {
+        getTasks()
+          .then(tasksInWeek => this.setState({tasksInWeek}));
+    };
 
-  updateTaskList = () => {
-    getTasks()
-      .then(tasksInWeek => this.setState({tasksInWeek}));
-  };
+    // changeTask = () => {
+    //     updateTask(task)
+    //       .then(() => this.updateTaskList());
+    // };
 
-  handleDoneTask = (task) => {
-    task.done = true;
-    updateTask(task)
-      .then(() => this.updateTaskList());
-  };
+    handleDeleteTask = (id) => {
+        deleteTask(id)
+          .then(() => this.updateTaskList());
+    };
 
-  handleInProgressTask = (task) => {
-    task.done = false;
-    updateTask(task)
-      .then(() => this.updateTaskList());
-  };
+    handleDoneTask = (task) => {
+        task.done = true;
+        updateTask(task)
+          .then(() => this.updateTaskList());
+    };
 
-  componentDidMount() {
-    this.updateTaskList();
-  }
+    handleInProgressTask = (task) => {
+        task.done = false;
+        updateTask(task)
+          .then(() => this.updateTaskList());
+    };
+
+    componentDidMount() {
+        this.updateTaskList();
+    }
 
 
-  render() {
+    render() {
 
-    return (
-      <Tabs selectedIndex={this.date}>
-        {this.state.tasksInWeek.map((tasks, index) => <Tab
-          key={index}
-          title={this.days[index]}
-        >
-          <ol className="taskList">
-            {tasks.map((task) => <li key={task.id} className="taskList__item">
-              <Link
-                to={`/tasks/${task.id}`}
-                className={task.done? 'done': 'in-progress' }
+        return (
+          <Tabs selectedIndex={this.date}>
+              {this.state.tasksInWeek.map((tasks, index) => <Tab
+                key={index}
+                title={days[index]}
               >
-                {task.title}
-              </Link>
-              {task.done ? null :
-                <React.Fragment>
-                  <span className="taskList__status in-progress" onClick={() => this.handleInProgressTask(task)}>~</span>
-                  <span className="taskList__status delete" onClick={() => this.handleDeleteTask(task.id)}>X</span>
-                  <span className="taskList__status done" onClick={() => this.handleDoneTask(task)}>V</span>
-                </React.Fragment>
-              }
-            </li>)}
-          </ol>
-          <button onClick={() => this.createTask(index)}>Add new task</button>
-        </Tab>)}
-      </Tabs>
-    )
-  }
+                  <ol className="taskList">
+                      {tasks.map((task) => <li key={task.id} className="taskList__item">
+                          <Link
+                            to={`/tasks/${task.id}`}
+                            className={task.done ? 'done' : 'in-progress'}
+                          >
+                              {task.title}
+                          </Link>
+                          {task.done ? null :
+                            <React.Fragment>
+                                <span className="taskList__status in-progress"
+                                      onClick={() => this.handleInProgressTask(task)}>~</span>
+                                <span className="taskList__status delete"
+                                      onClick={() => this.handleDeleteTask(task.id)}>X</span>
+                                <span className="taskList__status done"
+                                      onClick={() => this.handleDoneTask(task)}>V</span>
+                            </React.Fragment>
+                          }
+                      </li>)}
+                  </ol>
+                  <button className="taskList__btn" onClick={() => this.createTask(index)}>Add new task</button>
+              </Tab>)}
+          </Tabs>
+        )
+    }
 };
