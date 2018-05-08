@@ -17,4 +17,19 @@
       height: 100%;
     }
   }
+  &__logout {
+    padding: 10px 25px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: bold;
+    background: $gold;
+    border: 1px solid $gold;
+    border-radius: 5px;
+    color: black;
+    transition: background 0.3s;
+    cursor: pointer;
+    &:hover {
+      background: white;
+    }
+  }
 }

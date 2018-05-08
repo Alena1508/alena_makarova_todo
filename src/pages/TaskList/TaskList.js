@@ -71,7 +71,7 @@ export class TaskList extends React.Component {
               }
             </li>)}
           </ol>
-          <button onClick={() => this.createTask(index)}>Add new task</button>
+          <button className="taskList__btn" onClick={() => this.createTask(index)}>Add new task</button>
         </Tab>)}
       </Tabs>
     )

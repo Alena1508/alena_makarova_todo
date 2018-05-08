@@ -24,7 +24,16 @@ export const Navigation = ({ user }) => (
         </NavLink>
       </li>
 
-      {user && <li><strong>{user.firstName}</strong></li>}
+      {
+        user && <li>
+          <NavLink
+        to="/change-user"
+        activeClassName="active"
+      >
+          {user.firstName} profile
+      </NavLink>
+      </li>
+      }
     </ul>
   </nav>
 );
