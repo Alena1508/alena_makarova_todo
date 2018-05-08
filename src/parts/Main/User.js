@@ -1,4 +1,5 @@
 import { getInfoTask} from '../../services/tasks';
+import {Link} from 'react-router-dom';
 
 export class User extends React.Component {
   state = {
@@ -19,7 +20,7 @@ export class User extends React.Component {
         <p>{`Done: ${tasksInfo.done} `}</p>
         <p>{`In progress: ${tasksInfo.inProgress} `}</p>
         <p>{`Waiting: ${tasksInfo.waiting} `}</p>
-        <a href="/list">Go to the task list</a>
+        <Link to={`/tasks`}>Go to the task list</Link>
       </div>
     );
   }

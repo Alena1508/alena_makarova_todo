@@ -1,0 +1,46 @@
+@import "../../variables";
+
+.taskList {
+  &__item {
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    margin: 20px 0;
+    a {
+      &.in-progress {
+        color: $gold;
+      }
+      &.done {
+        color: $green;
+        text-decoration: line-through;
+      }
+    }
+
+  }
+  &__status {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 15px;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    &.in-progress {
+      color: $gold;
+      border: 1px solid $gold;
+      border-radius: 3px;
+    }
+    &.delete {
+      color: $red;
+      border: 1px solid $red;
+      border-radius: 3px;
+    }
+    &.done {
+      color: $green;
+      border: 1px solid $green;
+      border-radius: 3px;
+    }
+  }
+}

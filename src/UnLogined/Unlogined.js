@@ -13,7 +13,6 @@ export class Unlogined extends React.Component {
         />
         <Route
           path="/registration"
-          // render={() => <Registration />}
           component={Registration}
         />
         <Route

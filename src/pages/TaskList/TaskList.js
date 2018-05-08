@@ -1,4 +1,4 @@
-// import './taskList.scss';
+import './taskList.scss';
 import {Link} from 'react-router-dom';
 import {Tabs, Tab} from '../../components/Tabs/index';
 import { getTasks, deleteTask, updateTask } from '../../services/tasks';
@@ -49,7 +49,7 @@ export class TaskList extends React.Component {
   render() {
 
     return (
-      <Tabs>
+      <Tabs selectedIndex={this.date}>
         {this.state.tasksInWeek.map((tasks, index) => <Tab
           key={index}
           title={this.days[index]}
