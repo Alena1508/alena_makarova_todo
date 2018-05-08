@@ -2,7 +2,6 @@ import {Link} from 'react-router-dom';
 import './thankyouPage.scss';
 
 export const ThankyouPage = () => {
-
     return (
       <React.Fragment>
         <div className="thank-you">
@@ -12,5 +11,4 @@ export const ThankyouPage = () => {
         </div>
       </React.Fragment>
     )
-
-}
+};

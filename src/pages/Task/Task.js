@@ -1,4 +1,5 @@
 import { getTask, updateTask, createTask } from '../../services';
+import { days } from '../../consts';
 import './task.scss';
 
 export class Task extends React.Component {
@@ -45,7 +46,6 @@ export class Task extends React.Component {
   };
 
    render() {
-    const days = ['Sun', 'Mon', 'Thur', 'Wed', 'Th', 'Fr', 'St'];
     return (
       <form className="form-task" onSubmit={this.updateTask}>
         <p className="form-task__title">Day: <strong>{days[this.state.day]}</strong></p>

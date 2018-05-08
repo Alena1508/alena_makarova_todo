@@ -1,0 +1,1 @@
+const days = ['Sun', 'Mon', 'Th', 'Wed', 'Thur', 'Fr', 'St'];

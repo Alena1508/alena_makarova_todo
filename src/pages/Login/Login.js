@@ -11,7 +11,6 @@ export class Login extends React.Component {
     this.state = {
       loading: false
     };
-    this.onLogin = this.props.onLogin;
   }
 
 
@@ -25,7 +24,7 @@ export class Login extends React.Component {
 
     login({ email, password })
       .then((user) => {
-        this.onLogin(user);
+        this.props.onLogin(user);
       })
       .catch(err => console.log('Can\'t login', err));
 
@@ -38,7 +37,7 @@ export class Login extends React.Component {
       <div className="form-wrapper">
         <form
           className="form-login"
-          onSubmit={ (e) => this.submit(e) }
+          onSubmit={this.submit}
         >
           <input
             className="form-login__field"

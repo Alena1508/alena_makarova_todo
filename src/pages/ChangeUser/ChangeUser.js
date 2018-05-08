@@ -16,7 +16,7 @@ export class ChangeUser extends React.Component {
 
 
         updateUser(fields)
-          .then(this.props.history.push('/'))
+          .then(() => this.props.history.push('/'))
           .then((data) => this.onLogin(data))
           .catch(err => console.log('Can\'t login', err));
 
