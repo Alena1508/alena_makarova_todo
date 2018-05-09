@@ -26,10 +26,11 @@ export class TaskList extends React.Component {
           .then(tasksInWeek => this.setState({tasksInWeek}));
     };
 
-    // changeTask = () => {
-    //     updateTask(task)
-    //       .then(() => this.updateTaskList());
-    // };
+    changeTask = (task) => {
+        let tasksInWeek = [...this.state.tasksInWeek];
+        updateTask(task)
+          .then(() => this.setState({ tasksInWeek }));
+    };
 
     handleDeleteTask = (id) => {
         deleteTask(id)
@@ -38,14 +39,12 @@ export class TaskList extends React.Component {
 
     handleDoneTask = (task) => {
         task.done = true;
-        updateTask(task)
-          .then(() => this.updateTaskList());
+        this.changeTask(task);
     };
 
     handleInProgressTask = (task) => {
         task.done = false;
-        updateTask(task)
-          .then(() => this.updateTaskList());
+        this.changeTask(task);
     };
 
     componentDidMount() {
