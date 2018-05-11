@@ -14,11 +14,8 @@ export class Logined extends React.Component {
               <Route
                 path="/"
                 exact
-                render={routeProps =>
-                  <Main
-                    routeProps={routeProps}
-                    user={user}
-                  />
+                render={() =>
+                  <Main user={user} />
                 }
               />
               <Route
