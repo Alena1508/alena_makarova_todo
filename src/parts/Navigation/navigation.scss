@@ -1,0 +1,120 @@
+@import "../../variables";
+
+.main-nav {
+  ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 0 0 0 15px;
+      &:last-child {
+        position: relative;
+        &:hover {
+          .sub-menu {
+            padding-top: 15px;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 20px;
+            right: 0;
+            background: black;
+            border-radius: 5px;
+          }
+        }
+      }
+      a {
+        text-decoration: none;
+        position: relative;
+        &:hover {
+          &:after {
+            opacity: 1;
+            display: block;
+          }
+        }
+        &:after {
+          content: '';
+          opacity: 0;
+          width: 100%;
+          height: 2px;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -2px;
+          background: $gold;
+          transition-duration: 0.3s;
+        }
+        &.active {
+          &:after {
+            opacity: 1;
+            display: block;
+          }
+        }
+      }
+      .sub-menu {
+        display: none;
+        //&.open {
+        //  display: flex;
+        //  flex-direction: column;
+        //  position: absolute;
+        //  top: 20px;
+        //  left: 0;
+        //  right: 0;
+        //  background: black;
+        //  border-bottom-left-radius: 5px;
+        //  border-top-left-radius: 5px;
+        //}
+        li {
+           width: 100%;
+           margin: 5px 0;
+           a {
+             padding: 15px;
+             text-decoration: none;
+             text-transform: none;
+             color: white;
+             text-align: center;
+             transition-duration: 0.3s;
+             &:hover {
+               color: $gold;
+               &:after {
+                 display: none;
+               }
+             }
+           }
+          button {
+            background: none;
+            padding:15px;
+            color: white;
+            border: none;
+            transition-duration: 0.3s;
+            &:hover {
+              color: $gold;
+            }
+          }
+         }
+
+      }
+    }
+  }
+  button {
+    padding: 10px 25px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: bold;
+    background: $gold;
+    border: 1px solid $gold;
+    border-radius: 5px;
+    color: black;
+    transition: background 0.3s;
+    cursor: pointer;
+    a {
+      text-decoration: none;
+      display: block;
+      height: auto;
+      width: auto;
+    }
+    &:hover {
+      background: white;
+    }
+  }
+}

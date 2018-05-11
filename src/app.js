@@ -1,27 +1,11 @@
-import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import ReactDom from 'react-dom';
-import { Header } from './Header';
-import { Main } from './Main';
-import { Footer } from './Footer';
 
+import { App } from './app.component';
 
-
-
-// const paint = () => {
-//   const time = React.createElement('time', null, `Time is ${new Date().toLocaleTimeString()}`);
-//   const component = React.createElement('h1', null, 'Hello, react easycode! ', time);
-//   ReactDom.render(component, document.getElementById('app'));
-// };
-//
-// setInterval(paint, 500);
-
-
-
-const component = (
-  <React.Fragment>
-    <Header />
-    <Main />
-    <Footer />
-  </React.Fragment>
+const Root = (
+  <Router>
+    <App />
+  </Router>
 );
-ReactDom.render(component, document.getElementById('app'));
+ReactDom.render(Root, document.getElementById('app'));

@@ -1,0 +1,70 @@
+import { Link } from 'react-router-dom';
+import './login.scss';
+import { Loader } from '../../components';
+import { login } from '../../services';
+
+
+
+export class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false
+    };
+  }
+
+
+  submit = (e) => {
+    this.setState({loading: true});
+    const email = e.target.name.value;
+    const password = e.target.password.value;
+
+    e.preventDefault();
+
+
+    login({ email, password })
+      .then((user) => {
+        this.props.onLogin(user);
+      })
+      .catch(err => console.log('Can\'t login', err));
+
+  };
+
+  render() {
+    const { loading } = this.state;
+    return (
+      loading ? <Loader /> :
+      <div className="form-wrapper">
+        <form
+          className="form-login"
+          onSubmit={this.submit}
+        >
+          <input
+            className="form-login__field"
+            type="text"
+            placeholder="Name"
+            name="name"
+            defaultValue="admin@a.com"
+            required
+          />
+          <input
+            className="form-login__field"
+            type="password"
+            name="password"
+            placeholder="Password"
+            defaultValue="admin"
+            required
+          />
+          <div className="form-login__buttons">
+            <button
+              className="form-login__btn"
+              type="submit"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  }
+};
