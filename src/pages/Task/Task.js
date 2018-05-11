@@ -1,8 +1,10 @@
 import { getTask, updateTask, createTask } from '../../services';
-import { days } from '../../consts';
+import { days } from '../../constants/consts';
 import './task.scss';
+import  { addTodo} from "../../store";
+import { connect } from 'react-redux';
 
-export class Task extends React.Component {
+class Task extends React.Component {
   constructor(props) {
     super(props);
 
@@ -41,8 +43,14 @@ export class Task extends React.Component {
 
     event.preventDefault();
 
-    promise
-      .then(() => this.props.history.push('/tasks'));
+      promise
+        .then(data => {
+          console.log('data', data)
+            this.props.addTodo(data);
+            this.props.history.push('/tasks')
+        }
+)
+    ;
   };
 
    render() {
@@ -72,3 +80,9 @@ export class Task extends React.Component {
     )
   }
 }
+
+const mapDispatchToProps = {
+    addTodo
+};
+
+export default connect(null, mapDispatchToProps)(Task);

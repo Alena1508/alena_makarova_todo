@@ -1,19 +1,20 @@
 import { Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Header, Footer } from './parts';
 import { Pages } from './Pages';
 import { Loader } from './components/Loader/Loader';
 import { checkUser, logout } from './services';
+import { setUser } from "./store";
 
 import './common.scss';
 
 
-export class App extends React.Component {
-  state = {
-    user: undefined
-  };
+export class AppComponent extends React.Component {
+
 
   setLoginState = (user) => {
-    this.setState({ user });
+    this.props.dispatch(setUser(user));
   };
 
   setLogout = () => {
@@ -32,9 +33,8 @@ export class App extends React.Component {
       });
   }
 
-
   render() {
-    const { user } = this.state;
+    const { user } = this.props;
 
     return (
       <React.Fragment>
@@ -43,7 +43,7 @@ export class App extends React.Component {
                   user={user}
           />
           {
-            user !== undefined ?
+            user !== false ?
               <Pages user={user}
                      setLoginState={this.setLoginState}
               /> : <Loader/>
@@ -55,3 +55,9 @@ export class App extends React.Component {
     );
   }
 }
+
+const mapStoreToProps = state => ({
+    user: state.user
+});
+
+export const App = withRouter(connect(mapStoreToProps)(AppComponent));

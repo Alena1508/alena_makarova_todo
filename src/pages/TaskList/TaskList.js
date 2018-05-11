@@ -1,54 +1,52 @@
 import './taskList.scss';
 import {Link} from 'react-router-dom';
 import {Tabs, Tab} from '../../components/Tabs/index';
-import {getTasks, deleteTask, updateTask} from '../../services/tasks';
-import { days } from '../../consts';
+import { deleteTask, updateTask, getTasks as getTasksRequest} from '../../services/tasks';
+import { days } from '../../constants/consts';
+import { getTasks } from '../../store';
+import { connect } from 'react-redux';
 
-export class TaskList extends React.Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            tasksInWeek: []
-        };
-    }
+class TaskList extends React.Component {
 
 
     date = new Date().getDay();
 
-    createTask = (day) => {
+    createTask = (day, task) => {
         this.props.history.push(`tasks/newtask?day=${day}`);
     };
 
 
-    updateTaskList = () => {
-        getTasks()
-          .then(tasksInWeek => this.setState({tasksInWeek}));
-    };
+    // updateTaskList = () => {
+        // getTasks()
+        //   .then(tasksInWeek => this.setState({tasksInWeek}));
+    // };
 
-    changeTask = (task) => {
-        let tasksInWeek = [...this.state.tasksInWeek];
-        updateTask(task)
-          .then(() => this.setState({ tasksInWeek }));
-    };
+    // changeTask = (task) => {
+    //     let tasksInWeek = [...this.props.tasksInWeek];
+    //     updateTask(task)
+    //       .then(() => this.setState({ tasksInWeek }));
+    // };
 
-    handleDeleteTask = (id) => {
-        deleteTask(id)
-          .then(() => this.updateTaskList());
-    };
+    // handleDeleteTask = (id) => {
+    //     deleteTask(id)
+    //       .then(() => this.updateTaskList());
+    // };
 
-    handleDoneTask = (task) => {
-        task.done = true;
-        this.changeTask(task);
-    };
-
-    handleInProgressTask = (task) => {
-        task.done = false;
-        this.changeTask(task);
-    };
+    // handleDoneTask = (task) => {
+    //     task.done = true;
+    //     this.changeTask(task);
+    // };
+    //
+    // handleInProgressTask = (task) => {
+    //     task.done = false;
+    //     this.changeTask(task);
+    // };
 
     componentDidMount() {
-        this.updateTaskList();
+        // this.updateTaskList();
+        return getTasksRequest()
+          .then(tasksInWeek =>   this.props.getTasks(tasksInWeek))
     }
 
 
@@ -56,7 +54,7 @@ export class TaskList extends React.Component {
 
         return (
           <Tabs selectedIndex={this.date}>
-              {this.state.tasksInWeek.map((tasks, index) => <Tab
+              {this.props.tasksInWeek.map((tasks, index) => <Tab
                 key={index}
                 title={days[index]}
               >
@@ -68,15 +66,7 @@ export class TaskList extends React.Component {
                           >
                               {task.title}
                           </Link>
-                          {task.done ? null :
-                            <React.Fragment>
-                                <span className="taskList__status in-progress"
-                                      onClick={() => this.handleInProgressTask(task)}>~</span>
-                                <span className="taskList__status delete"
-                                      onClick={() => this.handleDeleteTask(task.id)}>X</span>
-                                <span className="taskList__status done"
-                                      onClick={() => this.handleDoneTask(task)}>V</span>
-                            </React.Fragment>
+                          {task.done ? null : <h1> Hello world</h1>
                           }
                       </li>)}
                   </ol>
@@ -86,3 +76,13 @@ export class TaskList extends React.Component {
         )
     }
 };
+
+const mapStoreToProps = state => ({
+    tasksInWeek: state.taskList
+});
+
+const mapDispatchToProps = {
+    getTasks
+};
+
+export default connect(mapStoreToProps, mapDispatchToProps)(TaskList);

@@ -28,9 +28,10 @@ export class ChangeUser extends React.Component {
         return (
           loading ? <Loader /> :
             <Form
-              onSubmit={fields => this.submit(fields)}
+              data={this.props.user}
               disabled={['email']}
               skipped={['password', 'repeatPassword']}
+              onSubmit={fields => this.submit(fields)}
             />
         );
     }

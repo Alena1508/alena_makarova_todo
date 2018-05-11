@@ -1,7 +1,7 @@
 import {Route, Switch, Redirect} from 'react-router-dom';
-import {Task} from "../pages/Task";
+import Task from "../pages/Task";
 import {NotFound} from "../pages/NotFound";
-import {TaskList} from "../pages/TaskList";
+import TaskList from "../pages/TaskList";
 import {Main} from "../parts";
 import {ChangeUser} from "../pages/ChangeUser/ChangeUser";
 
@@ -34,7 +34,7 @@ export class Logined extends React.Component {
               <Route
                 path="/change-user"
                 exact
-                component={ChangeUser}
+                render={() => <ChangeUser user={user}/>}
               />
               <Redirect from="/login" to="/"/>
               <Route
