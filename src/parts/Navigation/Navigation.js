@@ -1,38 +1,48 @@
+import { connect } from 'react-redux';
+import { NavLink, Link } from 'react-router-dom';
+
 import './navigation.scss';
-import {NavLink} from 'react-router-dom';
-import {Redirect} from 'react-router-dom';
-import {Link} from 'react-router-dom';
+import { removeUser } from '../../store';
+import { logout } from '../../services';
 
 
-export const Navigation = ({ user, logout }) => (
-  <nav className="main-nav">
-      {
+export class NavigationContainer extends React.Component {
+  handleLogout = () => {
+    logout()
+      .then(this.props.dispatch(removeUser()));
+  };
+
+  render() {
+    const { user } = this.props;
+    return (
+      <nav className="main-nav">
+        {
           user ?
-          <ul className="menu">
+            <ul className="menu">
               <li>
-                  <NavLink
-                    to="/"
-                    exact
-                    activeClassName="active"
-                  >
-                      Home
-                  </NavLink>
+                <NavLink
+                  to="/"
+                  exact
+                  activeClassName="active"
+                >
+                  Home
+                </NavLink>
               </li>
               <li>
-                  <NavLink
-                    to="/tasks"
-                    activeClassName="active"
-                  >
-                      Tasks
-                  </NavLink>
+                <NavLink
+                  to="/tasks"
+                  activeClassName="active"
+                >
+                  Tasks
+                </NavLink>
               </li>
               <li>
-                  <NavLink
-                    to="/"
-                    activeClassName="active"
-                  >
-                      {user.firstName}
-                  </NavLink>
+                <NavLink
+                  to="/"
+                  activeClassName="active"
+                >
+                  {user.firstName}
+                </NavLink>
 
                 <ul className="sub-menu">
                   <li>
@@ -44,17 +54,27 @@ export const Navigation = ({ user, logout }) => (
                     </NavLink>
                   </li>
                   <li>
-                    <button onClick={logout}>Logout</button>
+                    <button onClick={this.handleLogout}>Logout</button>
                   </li>
                 </ul>
 
               </li>
-          </ul> :
-          <button>
-            <Link to={`/registration`}>
-            Registration
-            </Link>
-          </button>
-      }
-  </nav>
-);
+            </ul> :
+            <button>
+              <Link to="/registration">
+                Registration
+              </Link>
+            </button>
+        }
+      </nav>
+    );
+  }
+}
+
+
+const mapStoreToProps = ({ user }) => ({
+  user
+});
+
+export const Navigation = connect(mapStoreToProps)(NavigationContainer);
+

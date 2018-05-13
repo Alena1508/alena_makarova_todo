@@ -7,6 +7,6 @@ export class Pages extends React.Component {
   render () {
     return this.props.user ?
       <Logined user={this.props.user} /> :
-      <Unlogined onLogin={this.props.setLoginState} />
+      <Unlogined />
   }
 };

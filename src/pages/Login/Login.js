@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './login.scss';
+
 import { Loader } from '../../components';
 import { login } from '../../services';
+import { setUser } from '../../store';
 
 
-
-export class Login extends React.Component {
+export class LoginContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +16,7 @@ export class Login extends React.Component {
 
 
   submit = (e) => {
-    this.setState({loading: true});
+    this.setState({ loading: true });
     const email = e.target.name.value;
     const password = e.target.password.value;
 
@@ -24,10 +25,9 @@ export class Login extends React.Component {
 
     login({ email, password })
       .then((user) => {
-        this.props.onLogin(user);
+        this.props.dispatch(setUser(user));
       })
       .catch(err => console.log('Can\'t login', err));
-
   };
 
   render() {
@@ -67,4 +67,10 @@ export class Login extends React.Component {
       </div>
     );
   }
-};
+}
+
+const mapStoreToProps = ({ user }) => ({
+  user
+});
+
+export const Login = connect(mapStoreToProps)(LoginContainer);

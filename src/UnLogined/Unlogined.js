@@ -9,7 +9,7 @@ export class Unlogined extends React.Component {
       <Switch>
         <Route
           path="/login"
-          render={() => <Login onLogin={this.props.onLogin} />}
+          component={Login}
         />
         <Route
           path="/registration"
