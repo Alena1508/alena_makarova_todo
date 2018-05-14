@@ -7,7 +7,9 @@ export const Header = () => {
 
   return (
     <header className="header">
-      <a href="/"><img src="/images/logo.svg" alt="todo" /></a>
+      <div className="logo">
+        <img src="/images/logo.svg" alt="todo" />
+      </div>
       <Navigation />
     </header>
   )

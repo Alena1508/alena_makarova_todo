@@ -1,54 +1,53 @@
 import {
-    SET_USER,
-    UPDATE_USER,
-    REMOVE_USER,
-    ADD_TASK,
-    GET_TASKS,
-    GET_INFO
+  SET_USER,
+  UPDATE_USER,
+  REMOVE_USER,
+  ADD_TASK,
+  GET_TASKS,
+  GET_INFO
 } from './actions';
 
 
-export const user = (state = false, {type, data}) => {
-    switch (type) {
-        case UPDATE_USER:
-        case SET_USER: {
-            return data;
-        }
-
-        case REMOVE_USER:
-            return null;
+export const user = (state = false, { type, data }) => {
+  switch (type) {
+    case UPDATE_USER:
+    case SET_USER: {
+      return data;
     }
 
-    return state;
+    case REMOVE_USER:
+      return null;
+  }
+
+  return state;
 };
 
-export const taskList = (state = [], {type, data}) => {
-    switch (type) {
-        case ADD_TASK: {
-            return state.map((day) => {
-                if (day === data.day) {
-                    return [...day, data];
-                }
-                return day;
-            });
+export const taskList = (state = [], { type, data }) => {
+  switch (type) {
+    case ADD_TASK: {
+      return state.map((day) => {
+        if (day === data.day) {
+          return [...day, data];
         }
-
-
-        case GET_TASKS: {
-            return data || state;
-        }
+        return day;
+      });
     }
 
-    return state;
+
+    case GET_TASKS: {
+      return data || state;
+    }
+  }
+
+  return state;
 };
 
-export const information = (state = {}, {type, data}) => {
-    switch (type) {
-        case GET_INFO: {
-            return data;
-        }
-
+export const information = (state = {}, { type, data }) => {
+  switch (type) {
+    case GET_INFO: {
+      return data;
     }
+  }
 
-    return state;
+  return state;
 };

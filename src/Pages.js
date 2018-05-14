@@ -1,12 +1,15 @@
+
 import { Logined } from './Logined';
 import { Unlogined } from './UnLogined';
 
 
-export class Pages extends React.Component {
+export const Pages = ({ user }) => (
+  <React.Fragment>
+    {
+      user ?
+        <Logined /> :
+        <Unlogined />
+    }
+  </React.Fragment>
+);
 
-  render () {
-    return this.props.user ?
-      <Logined user={this.props.user} /> :
-      <Unlogined />
-  }
-};
