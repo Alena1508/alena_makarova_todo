@@ -1,42 +1,54 @@
 import {
-  SET_USER,
-  UPDATE_USER,
-  REMOVE_USER,
-  ADD_TASK,
-  GET_TASKS
+    SET_USER,
+    UPDATE_USER,
+    REMOVE_USER,
+    ADD_TASK,
+    GET_TASKS,
+    GET_INFO
 } from './actions';
 
 
-export const user = (state = false, { type, data }) => {
-  switch (type) {
-    case UPDATE_USER:
-    case SET_USER: {
-      return data;
+export const user = (state = false, {type, data}) => {
+    switch (type) {
+        case UPDATE_USER:
+        case SET_USER: {
+            return data;
+        }
+
+        case REMOVE_USER:
+            return null;
     }
 
-    case REMOVE_USER:
-      return null;
-  }
-
-  return state;
+    return state;
 };
 
-export const taskList = (state = [], { type, data }) => {
-  switch (type) {
-    case ADD_TASK: {
-      return state.map((day) => {
-        if (day === data.day) {
-          return [...day, data];
+export const taskList = (state = [], {type, data}) => {
+    switch (type) {
+        case ADD_TASK: {
+            return state.map((day) => {
+                if (day === data.day) {
+                    return [...day, data];
+                }
+                return day;
+            });
         }
-        return day;
-      });
+
+
+        case GET_TASKS: {
+            return data || state;
+        }
     }
 
+    return state;
+};
 
-    case GET_TASKS: {
-      return data || state;
+export const information = (state = {}, {type, data}) => {
+    switch (type) {
+        case GET_INFO: {
+            return data;
+        }
+
     }
-  }
 
-  return state;
+    return state;
 };

@@ -11,39 +11,38 @@ import { getTasks } from '../../store';
 export class TaskListContainer extends React.Component {
   date = new Date().getDay();
 
-  createTask = (day, task) => {
+  createTask = (day) => {
     this.props.history.push(`tasks/newtask?day=${day}`);
   };
 
 
-  // updateTaskList = () => {
-  // getTasks()
-  //   .then(tasksInWeek => this.setState({tasksInWeek}));
-  // };
+    updateTaskList = () => {
+        getTasksRequest()
+          .then(tasksInWeek => this.props.getTasks(tasksInWeek));
+    };
 
-  // changeTask = (task) => {
-  //     let tasksInWeek = [...this.props.tasksInWeek];
-  //     updateTask(task)
-  //       .then(() => this.setState({ tasksInWeek }));
-  // };
+    changeTask = (task) => {
+        const tasksInWeek = [...this.props.tasksInWeek];
+        console.log(tasksInWeek);
+        updateTask(task)
+          .then(() => this.setState({tasksInWeek}));
+    };
 
-  // handleDeleteTask = (id) => {
-  //     deleteTask(id)
-  //       .then(() => this.updateTaskList());
-  // };
 
-  // handleDoneTask = (task) => {
-  //     task.done = true;
-  //     this.changeTask(task);
-  // };
-  //
-  // handleInProgressTask = (task) => {
-  //     task.done = false;
-  //     this.changeTask(task);
-  // };
+    changeTaskState = (task, state = false) => {
+        task.done = state;
+        console.log(task.done);
+        this.changeTask(task);
+        console.log(task);
+    };
+
+
+    handleDeleteTask = (id) => {
+        deleteTask(id)
+          .then(() => this.updateTaskList());
+    };
 
   componentDidMount() {
-    // this.updateTaskList();
     return getTasksRequest()
       .then(tasksInWeek => this.props.getTasks(tasksInWeek));
   }

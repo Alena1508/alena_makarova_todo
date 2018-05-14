@@ -10,12 +10,11 @@ export class ChangeUserContainer extends React.Component {
     this.state = {
       loading: false
     };
-    // this.onLogin = this.props.onLogin;
   }
 
 
     submit = (fields) => {
-      // this.setState({ loading: true });
+      this.setState({ loading: true });
 
 
       updateUser(fields)

@@ -7,18 +7,12 @@ import { ChangeUser } from '../pages/ChangeUser/ChangeUser';
 
 export class Logined extends React.Component {
   render() {
-    const { user } = this.props;
     return (
       <Switch>
         <Route
           path="/"
           exact
-          render={routeProps =>
-                  (<Main
-                    routeProps={routeProps}
-                    user={user}
-                  />)
-                }
+          component={Main}
         />
         <Route
           path="/tasks"
@@ -40,7 +34,6 @@ export class Logined extends React.Component {
           path="*"
           component={NotFound}
         />
-        <Route render={({ location }) => <h1>Page <em> {location.pathname.replace('/', '')}</em> is not exist</h1>} />
       </Switch>
     );
   }

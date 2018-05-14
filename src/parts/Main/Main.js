@@ -1,10 +1,10 @@
 import { User } from './User';
 import './main.scss';
 
-export const Main = (user) => (
+export const Main = () => (
     <React.Fragment>
         <main className="main">
-            <User user={user} />
+            <User />
         </main>
     </React.Fragment>
   );

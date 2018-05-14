@@ -1,21 +1,20 @@
+import { connect } from 'react-redux';
 import { getInfoTask} from '../../services/tasks';
 import {Link} from 'react-router-dom';
+import { getInfoUser} from "../../store";
 
-export class User extends React.Component {
-  state = {
-    tasksInfo: {}
-  };
+export class UserContainer extends React.Component {
 
   componentDidMount() {
     getInfoTask()
-      .then(tasksInfo => this.setState({ tasksInfo }));
+      .then((tasksInfo) => this.props.dispatch(getInfoUser(tasksInfo)));
   }
 
   render() {
-    const { tasksInfo } = this.state;
+    const { user, tasksInfo } = this.props;
     return (
       <div className="user-info">
-        {this.props.user && <h2>{this.props.user.firstName}</h2>}
+        {user && <h2>{user.firstName}</h2>}
         <p>{`You have ${tasksInfo.total} tasks`}</p>
         <p>{`Done: ${tasksInfo.done} `}</p>
         <p>{`In progress: ${tasksInfo.inProgress} `}</p>
@@ -25,3 +24,9 @@ export class User extends React.Component {
     );
   }
 }
+
+const mapStoreToProps = ({ user, tasksInfo }) => ({
+    user, tasksInfo
+});
+
+export const User = connect(mapStoreToProps)(UserContainer);
