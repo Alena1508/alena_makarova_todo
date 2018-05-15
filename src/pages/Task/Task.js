@@ -1,12 +1,12 @@
-import { connect } from 'react-redux';
+
 
 import './task.scss';
 import { getTask, updateTask, createTask } from '../../services';
 import { days } from '../../constants/consts';
-import { addTodo } from '../../store';
 
 
-export class TaskContainer extends React.Component {
+
+export class Task extends React.Component {
   constructor(props) {
     super(props);
 
@@ -46,9 +46,7 @@ export class TaskContainer extends React.Component {
     event.preventDefault();
 
     promise
-      .then((data) => {
-        console.log('data', data);
-        this.props.addTodo(data);
+      .then(() => {
         this.props.history.push('/tasks');
       });
   };
@@ -81,8 +79,3 @@ export class TaskContainer extends React.Component {
   }
 }
 
-const mapDispatchToProps = {
-  addTodo
-};
-
-export const Task = connect(null, mapDispatchToProps)(TaskContainer);

@@ -1,23 +1,29 @@
+import { errObserver } from "./observer";
+
 const BASE_URL = 'http://localhost:8081/';
 
 export const request = (url, method = 'GET', body, options) => {
-  const fetchOpts = {
-    method: method,
-    credentials: 'include',
-    body: JSON.stringify(body)
-  };
+    const fetchOpts = {
+        method: method,
+        credentials: 'include',
+        body: JSON.stringify(body)
+    };
 
-  Object.assign(fetchOpts, options);
+    Object.assign(fetchOpts, options);
 
-  return fetch(`${BASE_URL}${url}`, fetchOpts)
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        return Promise.reject(data.error);
-      }
+    const promise = fetch(`${BASE_URL}${url}`, fetchOpts)
+      .then(response => response.json())
+      .then(data => {
+          if (data.error) {
+              return Promise.reject(data.error);
+          }
 
-      return Promise.resolve(data);
-    })
+          return Promise.resolve(data);
+      });
+
+    promise.catch(error => errObserver.trigger(error));
+
+    return promise;
 };
 
 export const rest = {

@@ -27,7 +27,10 @@ export class LoginContainer extends React.Component {
       .then((user) => {
         this.props.dispatch(setUser(user));
       })
-      .catch(err => console.log('Can\'t login', err));
+      .catch(err => {
+          console.log('Can\'t login', err);
+          this.setState({ loading: false });
+      })
   };
 
   render() {

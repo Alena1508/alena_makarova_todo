@@ -2,8 +2,7 @@ import { createStore, combineReducers } from 'redux';
 import * as reducers from './reducers';
 
 const rootReducers = combineReducers(reducers, {
-    user: false,
-    taskList: []
+    user: false
 });
 
 export const store = createStore(

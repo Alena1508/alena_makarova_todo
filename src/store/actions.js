@@ -10,7 +10,6 @@ export const GET_INFO = 'Get info user';
 export const getInfoUser = data => ({ type: GET_INFO, data });
 
 
-export const ADD_TASK = 'Add new task';
+
 export const GET_TASKS = 'Get all tasks';
-export const addTodo = data => ({ type: ADD_TASK, data });
 export const getTasks = data => ({ type: GET_TASKS, data });

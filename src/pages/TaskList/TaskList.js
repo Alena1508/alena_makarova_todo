@@ -18,22 +18,22 @@ export class TaskListContainer extends React.Component {
 
     updateTaskList = () => {
         getTasksRequest()
-          .then(tasksInWeek => this.props.getTasks(tasksInWeek));
+          .then(taskList => {
+              this.props.getTasks(taskList);
+              console.log('taskList', taskList);
+          })
     };
 
     changeTask = (task) => {
-        const tasksInWeek = [...this.props.tasksInWeek];
-        console.log(tasksInWeek);
+        const taskList = [...this.props.taskList];
         updateTask(task)
-          .then(() => this.setState({tasksInWeek}));
+          .then(() => this.setState({taskList}));
     };
 
 
     changeTaskState = (task, state = false) => {
         task.done = state;
-        console.log(task.done);
         this.changeTask(task);
-        console.log(task);
     };
 
 
@@ -44,14 +44,14 @@ export class TaskListContainer extends React.Component {
 
   componentDidMount() {
     return getTasksRequest()
-      .then(tasksInWeek => this.props.getTasks(tasksInWeek));
+      .then(taskList => this.props.getTasks(taskList));
   }
 
 
   render() {
     return (
       <Tabs selectedIndex={this.date}>
-        {this.props.tasksInWeek.map((tasks, index) => (<Tab
+        {this.props.taskList.map((tasks, index) => (<Tab
           key={index}
           title={days[index]}
         >
@@ -59,7 +59,7 @@ export class TaskListContainer extends React.Component {
             {tasks.map(task => (<li key={task.id} className="taskList__item">
               <Link
                 to={`/tasks/${task.id}`}
-                className={task.done ? 'done' : 'in-progress'}
+                className={`${task.done ? 'done' : ''} ${task.done === false ? 'in-progress' : ''}`}
               >
                 {task.title}
               </Link>
@@ -91,8 +91,8 @@ export class TaskListContainer extends React.Component {
   }
 }
 
-const mapStoreToProps = state => ({
-  tasksInWeek: state.taskList
+const mapStoreToProps = ({ taskList }) => ({
+    taskList
 });
 
 const mapDispatchToProps = {
