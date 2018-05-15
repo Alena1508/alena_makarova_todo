@@ -10,6 +10,7 @@ export const GET_INFO = 'Get info user';
 export const getInfoUser = data => ({ type: GET_INFO, data });
 
 
-
 export const GET_TASKS = 'Get all tasks';
+export const REMOVE_TASK = 'Remove task';
 export const getTasks = data => ({ type: GET_TASKS, data });
+export const removeTask = data => ({ type: REMOVE_TASK, data });

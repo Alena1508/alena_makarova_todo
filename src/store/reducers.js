@@ -1,11 +1,10 @@
 import {
-    SET_USER,
-    UPDATE_USER,
-    REMOVE_USER,
-    ADD_TASK,
-    GET_TASKS,
-    GET_INFO,
-    SET_ERROR
+  SET_USER,
+  UPDATE_USER,
+  REMOVE_USER,
+  GET_TASKS,
+  GET_INFO,
+  REMOVE_TASK
 } from './actions';
 
 
@@ -27,6 +26,11 @@ export const taskList = (state = [], { type, data }) => {
   switch (type) {
     case GET_TASKS: {
       return data || state;
+    }
+
+    case REMOVE_TASK: {
+      state[data.indexWeek] = state[data.indexWeek].filter((item) => item.id !== data.id);
+      return state;
     }
   }
 
