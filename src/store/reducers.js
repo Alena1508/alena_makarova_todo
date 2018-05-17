@@ -29,8 +29,8 @@ export const taskList = (state = [], { type, data }) => {
     }
 
     case REMOVE_TASK: {
-      state[data.indexWeek] = state[data.indexWeek].filter((item) => item.id !== data.id);
-      return state;
+      const updateState = state.map(day => day.filter(el => el.id !== data.id));
+      return updateState;
     }
   }
 
