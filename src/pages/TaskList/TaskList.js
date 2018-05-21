@@ -1,19 +1,14 @@
-import './taskList.scss';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+
+import './taskList.scss';
 import {Tabs, Tab} from '../../components/Tabs/index';
-import {getTasks, deleteTask, updateTask} from '../../services/tasks';
-import {days} from '../../consts';
-
-export class TaskList extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      tasksInWeek: []
-    };
-  }
+import {deleteTask, updateTask, getTasks as getTasksRequest} from '../../services/tasks';
+import {days} from '../../constants/consts';
+import {getTasks, removeTask} from '../../store';
 
 
+export class TaskListContainer extends React.Component {
   date = new Date().getDay();
 
   createTask = (day) => {
@@ -21,10 +16,12 @@ export class TaskList extends React.Component {
   };
 
 
-  updateTaskList = () => {
-    getTasks()
-      .then(tasksInWeek => this.setState({tasksInWeek}));
+  changeTask = (task) => {
+    const taskList = [...this.props.taskList];
+    updateTask(task)
+      .then(() => this.setState({taskList}));
   };
+
 
   changeTaskState = (task, state = false) => {
     task.done = state;
@@ -32,54 +29,67 @@ export class TaskList extends React.Component {
   };
 
 
-  changeTask = (task) => {
-    const tasksInWeek = [...this.state.tasksInWeek];
-    updateTask(task)
-      .then(() => this.setState({tasksInWeek}));
-  };
-
-  handleDeleteTask = (id) => {
+  handleDeleteTask = (id, indexWeek) => {
     deleteTask(id)
-      .then(() => this.updateTaskList());
+      .then(() => this.props.removeTask({id, indexWeek}));
   };
-
 
   componentDidMount() {
-    this.updateTaskList();
+    return getTasksRequest()
+      .then(taskList => this.props.getTasks(taskList));
   }
 
 
   render() {
-
     return (
       <Tabs selectedIndex={this.date}>
-        {this.state.tasksInWeek.map((tasks, index) => <Tab
+        {this.props.taskList.map((tasks, index) => (<Tab
           key={index}
           title={days[index]}
         >
           <ol className="taskList">
-            {tasks.map((task) => <li key={task.id} className="taskList__item">
+            {tasks.map(task => (<li key={task.id} className="taskList__item">
               <Link
                 to={`/tasks/${task.id}`}
-                className={task.done ? 'done' : 'in-progress'}
+                className={`${task.done ? 'done' : ''} ${task.done === false ? 'in-progress' : ''}`}
               >
                 {task.title}
               </Link>
               {task.done ? null :
                 <React.Fragment>
-                                <span className="taskList__status in-progress"
-                                      onClick={() => this.changeTaskState(task)}>~</span>
-                  <span className="taskList__status delete"
-                        onClick={() => this.handleDeleteTask(task.id)}>X</span>
-                  <span className="taskList__status done"
-                        onClick={() => this.changeTaskState(task, true)}>V</span>
+                  <span
+                    className="taskList__status in-progress"
+                    onClick={() => this.changeTaskState(task)}
+                  >~
+                  </span>
+                  <span
+                    className="taskList__status delete"
+                    onClick={() => this.handleDeleteTask(task.id, index)}
+                  >X
+                  </span>
+                  <span
+                    className="taskList__status done"
+                    onClick={() => this.changeTaskState(task, true)}
+                  >V
+                  </span>
                 </React.Fragment>
               }
-            </li>)}
+            </li>))}
           </ol>
           <button className="taskList__btn" onClick={() => this.createTask(index)}>Add new task</button>
-        </Tab>)}
+        </Tab>))}
       </Tabs>
-    )
+    );
   }
+}
+
+const mapStoreToProps = ({taskList}) => ({
+  taskList
+});
+
+const mapDispatchToProps = {
+  getTasks,
+  removeTask
 };
+
+export const TaskList = connect(mapStoreToProps, mapDispatchToProps)(TaskListContainer);

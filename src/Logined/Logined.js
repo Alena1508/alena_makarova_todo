@@ -1,46 +1,40 @@
-import {Route, Switch, Redirect} from 'react-router-dom';
-import {Task} from "../pages/Task";
-import {NotFound} from "../pages/NotFound";
-import {TaskList} from "../pages/TaskList";
-import {Main} from "../parts";
-import {ChangeUser} from "../pages/ChangeUser/ChangeUser";
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { Task } from '../pages/Task';
+import { NotFound } from '../pages/NotFound';
+import { TaskList } from '../pages/TaskList';
+import { Main } from '../parts';
+import { ChangeUser } from '../pages/ChangeUser/ChangeUser';
 
 export class Logined extends React.Component {
-    render() {
-
-        const {user} = this.props;
-        return (
-          <Switch>
-              <Route
-                path="/"
-                exact
-                render={() =>
-                  <Main user={user} />
-                }
-              />
-              <Route
-                path="/tasks"
-                exact
-                component={TaskList}
-              />
-              <Route
-                path="/tasks/:task"
-                exact
-                component={Task}
-              />
-              <Route
-                path="/change-user"
-                exact
-                component={ChangeUser}
-              />
-              <Redirect from="/login" to="/"/>
-              <Route
-                path="*"
-                component={NotFound}
-              />
-              <Route render={({location}) => <h1>Page <em> {location.pathname.replace('/', '')}</em> is not exist</h1>}
-              />
-          </Switch>
-        )
-    }
+  render() {
+    return (
+      <Switch>
+        <Route
+          path="/"
+          exact
+          component={Main}
+        />
+        <Route
+          path="/tasks"
+          exact
+          component={TaskList}
+        />
+        <Route
+          path="/tasks/:task"
+          exact
+          component={Task}
+        />
+        <Route
+          path="/change-user"
+          exact
+          component={ChangeUser}
+        />
+        <Redirect from="/login" to="/" />
+        <Route
+          path="*"
+          component={NotFound}
+        />
+      </Switch>
+    );
+  }
 }

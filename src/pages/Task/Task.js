@@ -1,6 +1,10 @@
-import { getTask, updateTask, createTask } from '../../services';
-import { days } from '../../consts';
+
+
 import './task.scss';
+import { getTask, updateTask, createTask } from '../../services';
+import { days } from '../../constants/consts';
+
+
 
 export class Task extends React.Component {
   constructor(props) {
@@ -10,25 +14,25 @@ export class Task extends React.Component {
       title: '',
       description: '',
       done: undefined
-    }
+    };
   }
 
   onChange = (event) => {
     const { target } = event;
-    this.setState({ [target.name]: target.value })
+    this.setState({ [target.name]: target.value });
   };
 
 
   componentDidMount() {
     const { task } = this.props.match.params;
 
-    if(task === 'newtask') {
+    if (task === 'newtask') {
       this.setState({ day: this.getDay() });
       return;
     }
 
     getTask(task)
-      .then(task => this.setState({ ...task}));
+      .then(task => this.setState({ ...task }));
   }
 
   getDay() {
@@ -42,10 +46,12 @@ export class Task extends React.Component {
     event.preventDefault();
 
     promise
-      .then(() => this.props.history.push('/tasks'));
+      .then(() => {
+        this.props.history.push('/tasks');
+      });
   };
 
-   render() {
+  render() {
     return (
       <form className="form-task" onSubmit={this.updateTask}>
         <p className="form-task__title">Day: <strong>{days[this.state.day]}</strong></p>
@@ -57,7 +63,7 @@ export class Task extends React.Component {
           onChange={this.onChange}
           required
         />
-        <br/>
+        <br />
         <textarea
           className="form-task__field"
           value={this.state.description}
@@ -65,10 +71,11 @@ export class Task extends React.Component {
           onChange={this.onChange}
         >
           {this.state.description}
-          </textarea>
-        <br/>
+        </textarea>
+        <br />
         <button className="form-task__btn">Save</button>
       </form>
-    )
+    );
   }
 }
+

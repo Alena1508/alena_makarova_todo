@@ -1,16 +1,19 @@
+import { Link } from 'react-router-dom';
 import {Navigation} from '../Navigation/index';
 
 import './header.scss';
 
 
-export const Header = ({user, logout}) => {
+export const Header = () => {
 
   return (
     <header className="header">
-      <div className="logo">
-        <img src="/images/logo.svg" alt="todo" />
-      </div>
-      <Navigation user={user} logout={logout}/>
+      <Link
+        to={`/`}
+        className="logo">
+            <img src="/images/logo.svg" alt="todo" />
+      </Link>
+      <Navigation />
     </header>
   )
 };

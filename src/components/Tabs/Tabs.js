@@ -1,7 +1,6 @@
 import './tabs.scss'
 import { TabNav } from './TabNav';
 import { Tab } from './Tab';
-import PropTypes from 'prop-types';
 
 export class Tabs extends React.Component {
   constructor(props) {

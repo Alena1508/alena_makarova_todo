@@ -1,27 +1,31 @@
-import { getInfoTask} from '../../services/tasks';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getInfoTask } from '../../services/tasks';
+import { Link } from 'react-router-dom';
+import { getInfoUser } from '../../store';
 
-export class User extends React.Component {
-  state = {
-    tasksInfo: {}
-  };
-
+export class UserContainer extends React.Component {
   componentDidMount() {
     getInfoTask()
-      .then(tasksInfo => this.setState({ tasksInfo }));
+      .then(tasksInfo => this.props.dispatch(getInfoUser(tasksInfo)));
   }
 
   render() {
-    const { tasksInfo } = this.state;
+    const { user, information } = this.props;
     return (
       <div className="user-info">
-        {this.props.user && <h2>{this.props.user.firstName}</h2>}
-        <p>{`You have ${tasksInfo.total} tasks`}</p>
-        <p>{`Done: ${tasksInfo.done} `}</p>
-        <p>{`In progress: ${tasksInfo.inProgress} `}</p>
-        <p>{`Waiting: ${tasksInfo.waiting} `}</p>
-        <Link to={`/tasks`}>Go to the task list</Link>
+        {user && <h2>{user.firstName}</h2>}
+        <p>{`You have ${information.total} tasks`}</p>
+        <p>{`Done: ${information.done} `}</p>
+        <p>{`In progress: ${information.inProgress} `}</p>
+        <p>{`Waiting: ${information.waiting} `}</p>
+        <Link to="/tasks">Go to the task list</Link>
       </div>
     );
   }
 }
+
+const mapStoreToProps = ({ user, information }) => ({
+  user, information
+});
+
+export const User = connect(mapStoreToProps)(UserContainer);

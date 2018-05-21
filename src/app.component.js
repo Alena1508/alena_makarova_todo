@@ -1,57 +1,62 @@
-import { Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastr';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Header, Footer } from './parts';
 import { Pages } from './Pages';
 import { Loader } from './components/Loader/Loader';
-import { checkUser, logout } from './services';
+import { checkUser, errObserver } from './services';
+import { setUser } from './store';
 
 import './common.scss';
 
 
-export class App extends React.Component {
-  state = {
-    user: undefined
-  };
+export class AppComponent extends React.Component {
+    setLoginState = (user) => {
+      this.props.dispatch(setUser(user));
+    };
 
-  setLoginState = (user) => {
-    this.setState({ user });
-  };
+    componentDidMount() {
+      checkUser()
+        .then((data) => {
+          this.setLoginState(data);
+        })
+        .catch(() => {
+          this.props.dispatch(setUser(null));
+        });
 
-  setLogout = () => {
-    logout()
-      .then(this.setState({ user: null }));
-  };
+      errObserver.addObserver((err = 'Something goes wrong') => this.props.user !== false && this.container.error(
+        <strong>{err}</strong>,
+        <em>Error</em>
+      ));
+    }
 
-  componentDidMount() {
-    checkUser()
-      .then((data) => {
-        this.setLoginState(data);
-      })
-      .catch(err => {
-        this.setLoginState(null);
-        console.log('Can\'t login', err);
-      });
-  }
+    render() {
+      const { user } = this.props;
 
-
-  render() {
-    const { user } = this.state;
-
-    return (
-      <React.Fragment>
-        <div className="wrapper">
-          <Header logout={this.setLogout}
-                  user={user}
-          />
-          {
-            user !== undefined ?
-              <Pages user={user}
-                     setLoginState={this.setLoginState}
-              /> : <Loader/>
-          }
-          <div className="push"></div>
-        </div>
-        <Footer/>
-      </React.Fragment>
-    );
-  }
+      return (
+        <React.Fragment>
+          <div className="wrapper">
+            <ToastContainer
+              ref={ref => this.container = ref}
+              className="toast-top-right"
+            />
+            <Header />
+            {
+                      user !== false ?
+                        <Pages
+                          user={user}
+                        /> : <Loader />
+                  }
+            <div className="push" />
+          </div>
+          <Footer />
+        </React.Fragment>
+      );
+    }
 }
+
+const mapStoreToProps = state => ({
+  user: state.user
+});
+
+export const App = withRouter(connect(mapStoreToProps)(AppComponent));
