@@ -4,7 +4,7 @@ import {
   REMOVE_USER,
   GET_TASKS,
   GET_INFO,
-  REMOVE_TASK
+  REMOVE_TASK, SET_ERROR
 } from './actions';
 
 
@@ -44,5 +44,14 @@ export const information = (state = {}, { type, data }) => {
     }
   }
 
+  return state;
+};
+
+
+export const error = (state = '', { type, data = '' }) => {
+  switch (type) {
+    case SET_ERROR:
+      return data;
+  }
   return state;
 };

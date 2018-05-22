@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
 import './login.scss';
-
 import { Loader } from '../../components';
-import { login } from '../../services';
-import { setUser } from '../../store';
+import { setLogin } from '../../store';
 
 
 export class LoginContainer extends React.Component {
@@ -23,14 +21,7 @@ export class LoginContainer extends React.Component {
     e.preventDefault();
 
 
-    login({ email, password })
-      .then((user) => {
-        this.props.dispatch(setUser(user));
-      })
-      .catch(err => {
-          console.log('Can\'t login', err);
-          this.setState({ loading: false });
-      })
+    dispatch(setLogin({ email: email.value, password: password.value }));
   };
 
   render() {

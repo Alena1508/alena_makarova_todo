@@ -5,58 +5,60 @@ import { Header, Footer } from './parts';
 import { Pages } from './Pages';
 import { Loader } from './components/Loader/Loader';
 import { checkUser, errObserver } from './services';
-import { setUser } from './store';
+import { getUser, setError } from './store';
 
 import './common.scss';
 
 
 export class AppComponent extends React.Component {
-    setLoginState = (user) => {
-      this.props.dispatch(setUser(user));
-    };
-
-    componentDidMount() {
-      checkUser()
-        .then((data) => {
-          this.setLoginState(data);
-        })
-        .catch(() => {
-          this.props.dispatch(setUser(null));
-        });
-
-      errObserver.addObserver((err = 'Something goes wrong') => this.props.user !== false && this.container.error(
-        <strong>{err}</strong>,
+  componentDidUpdate() {
+    if (this.props.error) {
+      this.container.error(
+        <strong>{this.props.error}</strong>,
         <em>Error</em>
-      ));
+      );
+
+      this.props.dispatch(setError(''));
     }
+  }
 
-    render() {
-      const { user } = this.props;
+  componentDidMount() {
+    this.props.dispatch(getUser());
 
-      return (
-        <React.Fragment>
-          <div className="wrapper">
-            <ToastContainer
-              ref={ref => this.container = ref}
-              className="toast-top-right"
-            />
-            <Header />
-            {
+    errObserver.addObserver((err = 'Something goes wrong') => this.props.user !== false && this.container.error(
+      <strong>{err}</strong>,
+      <em>Error</em>
+    ));
+  }
+
+  render() {
+    const { user } = this.props;
+
+    return (
+      <React.Fragment>
+        <div className="wrapper">
+          <ToastContainer
+            ref={ref => this.container = ref}
+            className="toast-top-right"
+          />
+          <Header />
+          {
                       user !== false ?
                         <Pages
                           user={user}
                         /> : <Loader />
                   }
-            <div className="push" />
-          </div>
-          <Footer />
-        </React.Fragment>
-      );
-    }
+          <div className="push" />
+        </div>
+        <Footer />
+      </React.Fragment>
+    );
+  }
 }
 
 const mapStoreToProps = state => ({
-  user: state.user
+  user: state.user,
+  error: state.error
 });
 
 export const App = withRouter(connect(mapStoreToProps)(AppComponent));
