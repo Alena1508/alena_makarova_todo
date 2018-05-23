@@ -1,8 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 const images = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
 
 const plugins = [
@@ -12,9 +13,8 @@ const plugins = [
     // favicon: 'images/favicon.ico'
   }),
   new webpack.HotModuleReplacementPlugin(),
-  new ExtractTextPlugin({
-    filename: 'styles.css',
-    allChunks: true
+  new MiniCssExtractPlugin({
+    filename: 'styles.css'
   }),
   new webpack.ProvidePlugin({
     React: 'react',
@@ -26,7 +26,7 @@ const plugins = [
 ];
 
 module.exports = {
-  entry: './app.js',
+  entry: ['babel-polyfill', './app.js'],
   context: path.resolve('src'),
   output: {
     filename: 'bundle-[name].js',
@@ -41,21 +41,22 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env', 'react'],
-            plugins: ['syntax-dynamic-import', 'transform-class-properties', 'transform-object-rest-spread']
+            presets: ['env', 'react', 'stage-0'], // + add react for jsx
+            plugins: [
+              'syntax-dynamic-import',
+              'transform-class-properties'
+            ]
           }
         }
       },
 
       {
         test: /\.s?css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {loader: "css-loader"},
-            {loader: "sass-loader"}
-          ]
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' }
+        ]
       },
 
       {
@@ -84,12 +85,6 @@ module.exports = {
   },
 
   plugins,
-
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    },
-  },
 
   mode: 'development',
 

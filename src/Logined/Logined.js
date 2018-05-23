@@ -1,9 +1,10 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Task } from '../pages/Task';
 import { NotFound } from '../pages/NotFound';
-import { TaskList } from '../pages/TaskList';
+// import { TaskList } from '../pages/TaskList';
 import { Main } from '../parts';
 import { ChangeUser } from '../pages/ChangeUser/ChangeUser';
+import { Async } from '../components';
 
 export class Logined extends React.Component {
   render() {
@@ -17,7 +18,7 @@ export class Logined extends React.Component {
         <Route
           path="/tasks"
           exact
-          component={TaskList}
+          render={() => <Async name="TaskList" path="pages/TaskList" />}
         />
         <Route
           path="/tasks/:task"
