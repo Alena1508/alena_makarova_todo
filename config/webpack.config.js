@@ -7,15 +7,15 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const images = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
 
 const plugins = [
-  new HtmlWebpackPlugin({
-    title: 'Test app',
-    template: 'index.html',
-    // favicon: 'images/favicon.ico'
-  }),
-  new webpack.HotModuleReplacementPlugin(),
   new MiniCssExtractPlugin({
     filename: 'styles.css'
   }),
+  new HtmlWebpackPlugin({
+    title: 'Test app',
+    template: 'index.html',
+    favicon: 'images/favicon.ico'
+  }),
+  new webpack.HotModuleReplacementPlugin(),
   new webpack.ProvidePlugin({
     React: 'react',
     Component: ['react', 'Component']
@@ -44,7 +44,8 @@ module.exports = {
             presets: ['env', 'react', 'stage-0'], // + add react for jsx
             plugins: [
               'syntax-dynamic-import',
-              'transform-class-properties'
+              'transform-class-properties',
+              'transform-regenerator'
             ]
           }
         }
@@ -85,6 +86,12 @@ module.exports = {
   },
 
   plugins,
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    },
+  },
 
   mode: 'development',
 
