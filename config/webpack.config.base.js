@@ -1,24 +1,25 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
+
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const images = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
 
 const plugins = [
-  new MiniCssExtractPlugin({
-    filename: 'styles.css'
-  }),
   new HtmlWebpackPlugin({
     title: 'Test app',
     template: 'index.html',
     favicon: 'images/favicon.ico'
   }),
-  new webpack.HotModuleReplacementPlugin(),
+  new MiniCssExtractPlugin({
+    filename: 'styles.css'
+  }),
   new webpack.ProvidePlugin({
     React: 'react',
-    Component: ['react', 'Component']
+    Component: ['react', 'Component'],
+    PropTypes: 'prop-types',
   }),
   new CopyWebpackPlugin([
     ...images.map(ext => ({ from: `**/*/*.${ext}`, to: 'images/[name].[ext]' }))
@@ -41,10 +42,11 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env', 'react', 'stage-0'], // + add react for jsx
+            presets: ['env', 'react', 'stage-0'],
             plugins: [
               'syntax-dynamic-import',
               'transform-class-properties',
+              'transform-object-rest-spread',
               'transform-regenerator'
             ]
           }
@@ -55,8 +57,8 @@ module.exports = {
         test: /\.s?css$/,
         use: [
           MiniCssExtractPlugin.loader,
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' }
+          {loader: "css-loader"},
+          {loader: "sass-loader"}
         ]
       },
 
@@ -91,15 +93,6 @@ module.exports = {
     splitChunks: {
       chunks: 'all'
     },
-  },
-
-  mode: 'development',
-
-  devServer: {
-    contentBase: path.resolve('dist'),
-    publicPath: '/',
-    port: 9090,
-    hot: true,
-    historyApiFallback: true
   }
 };
+
