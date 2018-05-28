@@ -2,13 +2,14 @@ import {
   SET_USER,
   UPDATE_USER,
   REMOVE_USER,
+} from './actionsUser';
+import {
   GET_TASKS,
   UPDATE_TASKS,
   GET_INFO,
   REMOVE_TASK,
-  CREATE_TASK,
-  SET_ERROR
-} from './actions';
+} from './actionsTask';
+import { SET_ERROR } from './actionsError';
 
 
 export const user = (state = false, { type, data }) => {

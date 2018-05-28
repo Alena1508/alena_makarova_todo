@@ -1,3 +1,5 @@
 export * from './store';
-export * from './actions';
 export * from './reducers';
+export * from './actionsError';
+export * from './actionsUser';
+export * from './actionsTask';

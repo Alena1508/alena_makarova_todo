@@ -1,6 +1,6 @@
 import { takeEvery, put } from 'redux-saga/effects';
 
-import { GET_USER_ASYNC, setUser, LOGIN_USER_ASYNC, LOGOUT_USER_ASYNC, removeUser, UPDATE_USER_ASYNC, updateUser } from '../actions';
+import { GET_USER_ASYNC, setUser, LOGIN_USER_ASYNC, LOGOUT_USER_ASYNC, removeUser, UPDATE_USER_ASYNC, updateUser } from '../actionsUser';
 import { checkUser, login, logout, updateUserFetch } from '../../services';
 
 export function* getUser() {
@@ -40,7 +40,7 @@ export function* watchlogoutUser() {
   yield takeEvery(LOGOUT_USER_ASYNC, logoutUser);
 }
 
-export function* update(data) {
+export function* update({ data }) {
   try {
     const user = yield updateUserFetch(data);
     yield put(updateUser(user));

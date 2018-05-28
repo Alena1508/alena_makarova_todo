@@ -1,5 +1,5 @@
 import { takeEvery, put } from 'redux-saga/effects';
-import { GET_TASKS_ASYNC, getTasks, UPDATE_TASKS_ASYNC, updateTasks, DELETE_TASK_ASYNC, removeTask } from '../actions';
+import { GET_TASKS_ASYNC, getTasks, UPDATE_TASKS_ASYNC, updateTasks, DELETE_TASK_ASYNC, removeTask } from '../actionsTask';
 import { getTasksFetch, updateTaskFetch, deleteTaskFetch } from '../../services';
 
 export function* getAllTasks() {
