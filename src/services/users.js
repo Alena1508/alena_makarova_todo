@@ -5,7 +5,7 @@ export const login = (data = {}) => rest.post(
   data
 );
 export const checkUser = () => rest.get('public/checkUser');
-export const updateUser = (data = {}) => rest.put('user', data);
+export const updateUserFetch = (data = {}) => rest.put('user', data);
 
 export const registration = (data = {}) => rest.post('public/user', data);
 export const logout = () => rest.get('logout');

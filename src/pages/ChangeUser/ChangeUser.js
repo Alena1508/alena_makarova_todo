@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
-import { updateUser as updateUserStore, updateUserAsync } from '../../store';
-// import { updateUser } from '../../services';
+import { updateUserAsync } from '../../store';
 import { Loader, Form } from '../../components';
 
 export class ChangeUserContainer extends React.Component {
@@ -13,23 +12,26 @@ export class ChangeUserContainer extends React.Component {
   }
 
 
-  // submit = (fields) => {
-  //   this.setState({ loading: true });
-  //
-  //
-  //   this.dispatch(updateUserAsync(fields)
-  //     .then(() => this.props.dispatch(updateUserStore(fields)))
-  //     .then(() => this.props.history.push('/'))
-  //     .catch(err => console.log('Can\'t login', err)));
-  // };
+  submit = (fields) => {
+    this.setState({ loading: true });
+
+
+    this.props.dispatch(updateUserAsync(fields));
+    this.props.history.push('/');
+  };
 
 
   render() {
     const { loading } = this.state;
+    const { email, firstName, lastName } = this.props.user;
     return (
       loading ? <Loader /> :
       <Form
-        data={this.props.user}
+        data={{
+          email,
+          firstName,
+          lastName
+        }}
         disabled={['email']}
         skipped={['password', 'repeatPassword']}
         onSubmit={this.submit}
