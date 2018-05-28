@@ -3,8 +3,11 @@ import {
   UPDATE_USER,
   REMOVE_USER,
   GET_TASKS,
+  UPDATE_TASKS,
   GET_INFO,
-  REMOVE_TASK, SET_ERROR
+  REMOVE_TASK,
+  CREATE_TASK,
+  SET_ERROR
 } from './actions';
 
 
@@ -28,9 +31,15 @@ export const taskList = (state = [], { type, data }) => {
       return data || state;
     }
 
+    case UPDATE_TASKS: {
+      const newState = [...state];
+      const index = newState[data.day].findIndex(el => el.id === data.id);
+      newState[data.day][index] = data;
+      return newState;
+    }
+
     case REMOVE_TASK: {
-      const updateState = state.map(day => day.filter(el => el.id !== data.id));
-      return updateState;
+      return state.map(day => day.filter(el => el.id !== data.id));
     }
   }
 

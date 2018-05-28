@@ -1,4 +1,4 @@
-import './form.scss';
+import  "./form.scss";
 
 export class Form extends Component {
   static get fields() {
@@ -6,12 +6,8 @@ export class Form extends Component {
       { id: 'email', label: 'email', reg: /^\w+@\w+\.[a-z]{2,}$/ },
       { id: 'firstName', label: 'first name', reg: /^[^ ]{3,20}$/ },
       { id: 'lastName', label: 'last name', reg: /^[^ ]{3,20}$/ },
-      {
-        id: 'password', label: 'password', reg: /^[^ ]{6,20}$/, secure: true
-      },
-      {
-        id: 'repeatPassword', label: 'repeat password', reg: /^[^ ]{6,20}$/, secure: true
-      }
+      { id: 'password', label: 'password', reg: /^[^ ]{4,20}$/, secure: true },
+      { id: 'repeatPassword', label: 'repeat password', reg: /^[^ ]{4,20}$/, secure: true }
     ];
   }
 
@@ -42,7 +38,7 @@ export class Form extends Component {
     this.setState({
       [target.name]: { value: target.value }
     });
-  };
+  }
 
   validate = (index) => {
     const field = this.fields[index];
@@ -57,7 +53,7 @@ export class Form extends Component {
     this.setState({
       [field.id]: stateField
     });
-  };
+  }
 
   getDisabledState() {
     return this.getActualFields()
@@ -73,7 +69,7 @@ export class Form extends Component {
 
     event.preventDefault();
 
-    if ((this.props.excluded.indexOf('repeatPassword') === -1) && (state.password.value !== state.repeatPassword.value)) {
+    if (state.password.value !== state.repeatPassword.value) {
       error = 'Passwords should be the same';
     }
 
@@ -82,7 +78,7 @@ export class Form extends Component {
     if (error) return;
 
     this.props.onSubmit(this.getFormValue());
-  };
+  }
 
   getFormValue() {
     const form = {};
@@ -111,40 +107,37 @@ export class Form extends Component {
         className="form"
         onSubmit={this.save}
       >
-        <div>{fields
+        <ul className="form-fields">{fields
           .filter(({ id }) => !excluded.includes(id))
           .map(({ label, secure, id }, index) => {
             const stateField = state[id];
 
             return (
-              <div
-                className="form-group"
-                key={label}
-              >
-                <label htmlFor={label}>{label}</label>
+              <li key={label} className="form-fields__item">
                 <input
                   type={secure ? 'password' : 'text'}
                   name={id}
-                  id={id}
-                  className={stateField.error ? 'error form-control' : 'correct form-control'}
+                  className={stateField.error ? 'error' : 'correct'}
                   placeholder={label.toUpperCase()}
                   value={stateField.value}
                   onChange={this.setValue}
                   onBlur={() => this.validate(index)}
                   disabled={disabled.includes(id)}
                 />
-                {stateField.error && <span className="form-text text-muted">{stateField.error}</span>}
-              </div>
+                {stateField.error && <span className="error-text">{stateField.error}</span>}
+              </li>
             );
           })}
-        </div>
+        </ul>
 
-        {state.error && <div className="alert alert-danger">{state.error}</div>}
+        {state.error && <span className="error-text">{state.error}</span>}
+
+        <br/>
 
         <input
+          className="form-fields__btn"
           type="submit"
           value="Save"
-          className="btn btn-primary"
           disabled={this.getDisabledState()}
         />
       </form>
@@ -156,5 +149,5 @@ Form.defaultProps = {
   excluded: [],
   disabled: [],
   skipped: [],
-  onSubmit: _ => _
+  onSubmit:_ => _
 };

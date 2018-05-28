@@ -5,7 +5,6 @@ import { getTask, updateTask, createTask } from '../../services';
 import { days } from '../../constants/consts';
 
 
-
 export class Task extends React.Component {
   constructor(props) {
     super(props);

@@ -21,22 +21,27 @@ export const setLogin = data => ({ type: LOGIN_USER_ASYNC, data });
 export const setLogout = () => ({ type: LOGOUT_USER_ASYNC });
 
 
-
 // actions
 export const GET_TASKS_ASYNC = 'Get all tasks async';
+export const UPDATE_TASKS_ASYNC = 'Get all tasks async';
+export const DELETE_TASK_ASYNC = 'Delete task async';
 
 
 export const GET_INFO = 'Get info user';
 
 export const GET_TASKS = 'Get all tasks';
+export const UPDATE_TASKS = 'Update all tasks';
 export const REMOVE_TASK = 'Remove task';
 
 
 export const getTasksAsync = () => ({ type: GET_TASKS_ASYNC });
+export const updateTasksAsync = data => ({ type: UPDATE_TASKS_ASYNC, data });
+export const deleteTaskAsync = id => ({ type: DELETE_TASK_ASYNC, id });
 export const getInfoUser = data => ({ type: GET_INFO, data });
 
 
 export const getTasks = data => ({ type: GET_TASKS, data });
+export const updateTasks = data => ({ type: UPDATE_TASKS, data });
 export const removeTask = data => ({ type: REMOVE_TASK, data });
 
 export const SET_ERROR = 'Set app error';

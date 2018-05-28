@@ -1,11 +1,10 @@
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './taskList.scss';
-import {Tabs, Tab} from '../../components/Tabs/index';
-import {deleteTask, updateTask, getTasks as getTasksRequest} from '../../services/tasks';
-import {days} from '../../constants/consts';
-import {getTasks, removeTask} from '../../store';
+import { Tabs, Tab } from '../../components/Tabs/index';
+import { days } from '../../constants/consts';
+import { getTasksAsync, updateTasksAsync, deleteTaskAsync } from '../../store';
 
 
 export class TaskListContainer extends React.Component {
@@ -17,9 +16,7 @@ export class TaskListContainer extends React.Component {
 
 
   changeTask = (task) => {
-    const taskList = [...this.props.taskList];
-    updateTask(task)
-      .then(() => this.setState({taskList}));
+    this.props.updateTask(task);
   };
 
 
@@ -29,14 +26,12 @@ export class TaskListContainer extends React.Component {
   };
 
 
-  handleDeleteTask = (id, indexWeek) => {
-    deleteTask(id)
-      .then(() => this.props.removeTask({id, indexWeek}));
+  handleDeleteTask = (id) => {
+    this.props.deleteTask(id);
   };
 
   componentDidMount() {
-    return getTasksRequest()
-      .then(taskList => this.props.getTasks(taskList));
+    this.props.getTasks();
   }
 
 
@@ -56,23 +51,23 @@ export class TaskListContainer extends React.Component {
                 {task.title}
               </Link>
               {task.done ? null :
-                <React.Fragment>
-                  <span
-                    className="taskList__status in-progress"
-                    onClick={() => this.changeTaskState(task)}
-                  >~
-                  </span>
-                  <span
-                    className="taskList__status delete"
-                    onClick={() => this.handleDeleteTask(task.id, index)}
-                  >X
-                  </span>
-                  <span
-                    className="taskList__status done"
-                    onClick={() => this.changeTaskState(task, true)}
-                  >V
-                  </span>
-                </React.Fragment>
+              <React.Fragment>
+                <span
+                  className="taskList__status in-progress"
+                  onClick={() => this.changeTaskState(task)}
+                >~
+                </span>
+                <span
+                  className="taskList__status delete"
+                  onClick={() => this.handleDeleteTask(task.id)}
+                >X
+                </span>
+                <span
+                  className="taskList__status done"
+                  onClick={() => this.changeTaskState(task, true)}
+                >V
+                </span>
+              </React.Fragment>
               }
             </li>))}
           </ol>
@@ -83,13 +78,14 @@ export class TaskListContainer extends React.Component {
   }
 }
 
-const mapStoreToProps = ({taskList}) => ({
+const mapStoreToProps = ({ taskList }) => ({
   taskList
 });
 
-const mapDispatchToProps = {
-  getTasks,
-  removeTask
-};
+const mapDispatchToProps = dispatch => ({
+  getTasks() { dispatch(getTasksAsync()); },
+  updateTask(data) { dispatch(updateTasksAsync(data)); },
+  deleteTask(data) { dispatch(deleteTaskAsync(data)); }
+});
 
 export const TaskList = connect(mapStoreToProps, mapDispatchToProps)(TaskListContainer);
