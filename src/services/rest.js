@@ -22,8 +22,7 @@ export const request = (url, method = 'GET', body, options) => {
       return Promise.resolve(data);
     });
 
-  promise.catch(error => store.dispatch(
-    !isUserChecking && setError(String(error))));
+  promise.catch(error => !isUserChecking && store.dispatch(setError(String(error))));
 
   return promise;
 };

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { updateUser as updateUserStore } from '../../store';
-import { updateUser } from '../../services';
+import { updateUser as updateUserStore, updateUserAsync } from '../../store';
+// import { updateUser } from '../../services';
 import { Loader, Form } from '../../components';
 
 export class ChangeUserContainer extends React.Component {
@@ -13,30 +13,29 @@ export class ChangeUserContainer extends React.Component {
   }
 
 
-    submit = (fields) => {
-      this.setState({ loading: true });
+  // submit = (fields) => {
+  //   this.setState({ loading: true });
+  //
+  //
+  //   this.dispatch(updateUserAsync(fields)
+  //     .then(() => this.props.dispatch(updateUserStore(fields)))
+  //     .then(() => this.props.history.push('/'))
+  //     .catch(err => console.log('Can\'t login', err)));
+  // };
 
 
-      updateUser(fields)
-        .then(() => this.props.dispatch(updateUserStore(fields)))
-        .then(() => this.props.history.push('/'))
-        .catch(err => console.log('Can\'t login', err));
-    };
-
-
-    render() {
-      const { loading } = this.state;
-      const { user } = this.props;
-      return (
-        loading ? <Loader /> :
-        <Form
-          data={user}
-          disabled={['email']}
-          skipped={['password', 'repeatPassword']}
-          onSubmit={this.submit}
-        />
-      );
-    }
+  render() {
+    const { loading } = this.state;
+    return (
+      loading ? <Loader /> :
+      <Form
+        data={this.props.user}
+        disabled={['email']}
+        skipped={['password', 'repeatPassword']}
+        onSubmit={this.submit}
+      />
+    );
+  }
 }
 
 const mapStoreToProps = ({ user }) => ({

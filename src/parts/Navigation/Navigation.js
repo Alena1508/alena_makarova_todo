@@ -2,14 +2,12 @@ import { connect } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 
 import './navigation.scss';
-import { removeUser } from '../../store';
-import { logout } from '../../services';
+import { setLogout } from '../../store';
 
 
 export class NavigationContainer extends React.Component {
   handleLogout = () => {
-    logout()
-      .then(this.props.dispatch(removeUser()));
+    this.props.dispatch(setLogout());
   };
 
   render() {

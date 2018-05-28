@@ -21,7 +21,7 @@ export class LoginContainer extends React.Component {
     e.preventDefault();
 
 
-    dispatch(setLogin({ email: email.value, password: password.value }));
+    this.props.dispatch(setLogin({ email, password }));
   };
 
   render() {
@@ -66,5 +66,6 @@ export class LoginContainer extends React.Component {
 const mapStoreToProps = ({ user }) => ({
   user
 });
+
 
 export const Login = connect(mapStoreToProps)(LoginContainer);
